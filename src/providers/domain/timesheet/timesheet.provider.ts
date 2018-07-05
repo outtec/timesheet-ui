@@ -14,18 +14,18 @@ import { TimesheetDto } from '../../../models/timesheet.dto';
 export class TimesheetProvider {
   constructor(public http: HttpClient) {
     console.log('Hello TimesheetProvider Provider');
-    this.findAll();
+   
   }
+  findAll(){
+    return this.http.get(`${API_CONFIG.baseUrl}?collaboratorid=3`);
+  } 
+ /**
+ * 
+ * 
   findAll() : Observable<TimesheetDto[]> {
-    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseurl}?collaboratorid=3`);
+    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}?collaboratorid=3`);
 
   }
-/**
- * 
- *   findAll(){
-    return this.http.get(`${API_CONFIG.baseurl}?collaboratorid=3`);
  
-  
   }
  */
-}

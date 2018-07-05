@@ -4,14 +4,18 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { CheckinPage } from '../pages/checkin/checkin';
-import { LoginPage } from '../pages/login/login';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from '@angular/common/http';
-import { TimesheetProvider } from '../providers/domain/timesheet/timesheet';
+import { TimesheetProvider } from '../providers/domain/timesheet/timesheet.provider';
+import { SigninPage } from '../pages/signin/signin';
+import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
+import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
+import { AuthProvider } from '../providers/auth.provider';
+import { StorageProvider } from '../providers/storage.provider';
 
 
 @NgModule({
@@ -19,7 +23,7 @@ import { TimesheetProvider } from '../providers/domain/timesheet/timesheet';
     MyApp,
     TimesheetsPage,
     CheckinPage,
-    LoginPage,
+    SigninPage,
     TabsPage
   ],
   imports: [
@@ -30,7 +34,7 @@ import { TimesheetProvider } from '../providers/domain/timesheet/timesheet';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage,
+    SigninPage,
     CheckinPage,
     TimesheetsPage,
     TabsPage
@@ -39,7 +43,12 @@ import { TimesheetProvider } from '../providers/domain/timesheet/timesheet';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TimesheetProvider
+    TimesheetProvider,
+    AuthInterceptorProvider,
+    ErrorInterceptorProvider,
+    AuthProvider,
+    StorageProvider,
+      
   ]
 })
 export class AppModule {}

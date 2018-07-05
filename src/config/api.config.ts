@@ -1,3 +1,4 @@
 export const API_CONFIG = {
-    baseurl : "http://localhost:8080/api/v1/timesheets"
+    baseUrl : "https://secure-headland-16849.herokuapp.com/api/v1/timesheets",
+    loginUrl:"https://secure-headland-16849.herokuapp.com"
 }
