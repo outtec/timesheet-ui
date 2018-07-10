@@ -13,32 +13,17 @@ import { TimesheetDto } from '../../../models/timesheet.dto';
 @Injectable()
 export class TimesheetProvider {
   constructor(public http: HttpClient) {
-    console.log('Hello TimesheetProvider Provider');
    
   }
-
-  findAll(){
-    console.log("FINDALL PROVIDER get na url");
+  findAll() {
+    console.log("provider timsheet GET na ");
     return this.http.get(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=3`);
-  } 
-}
-
- /**
- * 
- * 
- 
-
-  findAll() : Observable<TimesheetDto[]> {
-    console.log("provider tims");
-    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}?collaboratorid=3`);
   
-  }
-
-  findAll(){
-    return this.http.get(`${API_CONFIG.baseUrl}?collaboratorid=3`);
   } 
-
-  }
- 
-  }
- */
+/**
+  findAlls() : Observable<TimesheetDto[]> {
+    console.log("provider timsheet GET na API");
+    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=3`);
+  
+  } */ 
+}

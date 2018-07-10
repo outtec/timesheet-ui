@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
 import { AuthProvider } from '../../providers/auth.provider';
+import { TimesheetsPage } from '../timesheets/timesheets';
+
 
 @IonicPage()
 @Component({
@@ -34,24 +36,19 @@ export class SigninPage {
   ionViewDidEnter() {
     this.auth.refreshToken()
     .subscribe(response => {
-      //const user = JSON.parse(response.body)
-     // this.auth.successfullLogin(user.data.token);
+      this.auth.successfullLogin(response.headers.get('Authorization'));  
       console.log("REFRESH")
-      this.navCtrl.setRoot('TimesheetPage');  
+      this.navCtrl.setRoot("TimesheetPage");  
     },
     error => {}) 
   }
 
   login() {
+    console.log("Iniciando autenticação")
     this.auth.authenticate(this.credenciais)
       .subscribe(response => {   
-        console.log(response)  
-        //const user = JSON.parse(response.body)
-        //console.log(user.data.token); 
-        //this.auth.successfullLogin(user.data.token);
-        this.auth.successfullLogin(response.headers.get('Authorization'));
-      
-        console.log("AUTENTICOU")
+        this.auth.successfullLogin(response.headers.get('Authorization'));  
+          
       },
       error => {})
   }

@@ -20,11 +20,12 @@ export class AuthProvider {
     }
    
     authenticate(credenciais: CredenciaisDTO) {
+        console.log(credenciais);
         return this.http.post(`${API_CONFIG.loginUrl}/auth`, 
             credenciais,
             {
                observe: 'response',
-               responseType: 'json'
+               responseType: 'text'
             })
     }
 
@@ -47,7 +48,7 @@ export class AuthProvider {
             {},
             {
                observe: 'response',
-               responseType: 'json'
+               responseType: 'text'
             })
     }
 }

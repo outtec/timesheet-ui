@@ -15,7 +15,7 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthProvider } from '../providers/auth.provider';
 import { StorageProvider } from '../providers/storage.provider';
-import { DatePicker } from '@ionic-native/date-picker';
+
 
 
 @NgModule({
@@ -43,11 +43,11 @@ import { DatePicker } from '@ionic-native/date-picker';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TimesheetProvider,
     AuthInterceptorProvider,
     ErrorInterceptorProvider,
     AuthProvider,
     StorageProvider,
+    TimesheetProvider
       
   ]
 })
