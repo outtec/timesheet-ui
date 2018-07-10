@@ -24,13 +24,12 @@ export class TimesheetsPage {
   }
 
   private loadData() {
+    console.log("LOAD DATA CARREGOU"); 
     this.timesheetProvider.findAll()
-      .subscribe(reponse => {
-        
-        const data = (reponse as any);
-        const user = JSON.parse(data);
-
-       // let nLancamentos = reponse['content'];
+      .subscribe(response => {
+        console.log("AJOGAR"); 
+        console.log(response);
+          // let nLancamentos = reponse['content'];
        // this.lancamentos = this.lancamentos.concat(nLancamentos);
      },
     error =>{

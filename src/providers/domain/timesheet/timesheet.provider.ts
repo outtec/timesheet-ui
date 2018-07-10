@@ -16,14 +16,27 @@ export class TimesheetProvider {
     console.log('Hello TimesheetProvider Provider');
    
   }
+
   findAll(){
-    return this.http.get(`${API_CONFIG.baseUrl}?collaboratorid=3`);
+    console.log("FINDALL PROVIDER get na url");
+    return this.http.get(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=3`);
   } 
+}
+
  /**
  * 
  * 
+ 
+
   findAll() : Observable<TimesheetDto[]> {
+    console.log("provider tims");
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}?collaboratorid=3`);
+  
+  }
+
+  findAll(){
+    return this.http.get(`${API_CONFIG.baseUrl}?collaboratorid=3`);
+  } 
 
   }
  

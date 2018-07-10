@@ -3,9 +3,9 @@ import { HttpClient } from "@angular/common/http";
 import { CredenciaisDTO } from "../models/credenciais.dto";
 import { API_CONFIG } from "../config/api.config";
 import { LocalUser } from "../models/local_user";
-
 import { JwtHelper } from "angular2-jwt";
 import { StorageProvider } from "./storage.provider";
+import { TimesheetProvider } from "./domain/timesheet/timesheet.provider";
 
 @Injectable()
 export class AuthProvider {
@@ -14,17 +14,17 @@ export class AuthProvider {
 
     constructor(
         public http: HttpClient,
-        public storage: StorageProvider
+        public storage: StorageProvider,
+        public timesheetProvider: TimesheetProvider
         ) {
     }
    
     authenticate(credenciais: CredenciaisDTO) {
-        return this.http.post(
-            `${API_CONFIG.loginUrl}/auth`, 
+        return this.http.post(`${API_CONFIG.loginUrl}/auth`, 
             credenciais,
             {
                observe: 'response',
-               responseType: 'text'
+               responseType: 'json'
             })
     }
 
@@ -47,7 +47,7 @@ export class AuthProvider {
             {},
             {
                observe: 'response',
-               responseType: 'text'
+               responseType: 'json'
             })
     }
 }

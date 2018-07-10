@@ -12,8 +12,7 @@ export class SigninPage {
 
   credenciais: CredenciaisDTO = {
     email: "",
-    senha: "",
-    perfil: ""
+    senha: ""
   };
 
   constructor(
@@ -35,20 +34,23 @@ export class SigninPage {
   ionViewDidEnter() {
     this.auth.refreshToken()
     .subscribe(response => {
-      const user = JSON.parse(response.body)
-      this.auth.successfullLogin(user.data.token);
+      //const user = JSON.parse(response.body)
+     // this.auth.successfullLogin(user.data.token);
       console.log("REFRESH")
-      // this.navCtrl.setRoot('TimesheetPage');  
+      this.navCtrl.setRoot('TimesheetPage');  
     },
     error => {}) 
   }
 
   login() {
     this.auth.authenticate(this.credenciais)
-      .subscribe(response => {     
-        const user = JSON.parse(response.body)
-        console.log(user.data.token); 
-        this.auth.successfullLogin(user.data.token);
+      .subscribe(response => {   
+        console.log(response)  
+        //const user = JSON.parse(response.body)
+        //console.log(user.data.token); 
+        //this.auth.successfullLogin(user.data.token);
+        this.auth.successfullLogin(response.headers.get('Authorization'));
+      
         console.log("AUTENTICOU")
       },
       error => {})

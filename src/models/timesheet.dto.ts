@@ -5,5 +5,5 @@ export interface TimesheetDto {
 	isHoliday: boolean;
 	isInTravel : boolean;
 	periodDescription : string;
-	collaboratorId : string
+	collaboratorId : number;
 }

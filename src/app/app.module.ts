@@ -2,7 +2,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
 import { CheckinPage } from '../pages/checkin/checkin';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -16,6 +15,7 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthProvider } from '../providers/auth.provider';
 import { StorageProvider } from '../providers/storage.provider';
+import { DatePicker } from '@ionic-native/date-picker';
 
 
 @NgModule({
