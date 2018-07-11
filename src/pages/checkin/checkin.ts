@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, DateTime } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
+import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
 
 
 @Component({
@@ -20,13 +21,23 @@ timesheet : TimesheetDto = {
 
  
 }
-  constructor(public navCtrl: NavController) {
+
+  constructor(public navCtrl: NavController,
+    private timesheetProvider: TimesheetProvider) {
 
     
     
   }
   checkin(){
-    console.log(this.timesheet);
+    console.log("LOAD DATA CARREGOU"); 
+    this.timesheetProvider.insert(this.timesheet)
+      .subscribe(response => {
+       
+        console.log(response);
+     },
+    error =>{
+      console.log(error);
+    })
   }
 
 }

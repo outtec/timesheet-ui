@@ -16,10 +16,11 @@ export class AuthInterceptor implements HttpInterceptor {
         let isRequestToAPI = req.url.substring(0, n) === API_CONFIG.baseUrl;
 
         let localUser = this.storage.getLocalUser(); 
+        console.log("TOKEN DA REQUISIÇÃO")
         console.log(localUser.token)
         if (localUser) { //&& isRequestToAPI
             const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + localUser.token)});
-            console.log(req);
+            console.log(authReq);
             return next.handle(authReq)
             
         }else{
