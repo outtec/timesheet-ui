@@ -23,6 +23,10 @@ export class TimesheetProvider {
 
   }
 
+  findById(timesheet_id:string){
+    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`);
+  }
+
   insert(obj: TimesheetDto) {
     var dateStart = new Date(obj.startDateTime);
     var dateEnd = new Date(obj.startDateTime);
