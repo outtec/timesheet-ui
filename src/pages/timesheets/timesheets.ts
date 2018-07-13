@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
 import { HttpClient } from '@angular/common/http';
 import { TimesheetDto } from '../../models/timesheet.dto';
@@ -11,8 +11,8 @@ import { TimesheetDto } from '../../models/timesheet.dto';
 })
 export class TimesheetsPage {
 
-  lancamentos: TimesheetDto[];
-
+  nlancamentos: TimesheetDto[];
+  public lancamentos : any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,14 +24,17 @@ export class TimesheetsPage {
   }
 
   private loadData() {
-    console.log("LOAD DATA CARREGOU"); 
+
     this.timesheetProvider.findAll()
-      .subscribe(response => {
-        console.log("AJOGAR"); 
-        console.log(response);
-          // let nLancamentos = reponse['content'];
-       // this.lancamentos = this.lancamentos.concat(nLancamentos);
-     },
+      .subscribe(response => {  
+       const data =(response as any);
+       let nLancamentos = "";
+       this.lancamentos = data.data.content;
+       console.log(this.lancamentos); 
+       console.log(data.data.numberOfElements);     
+ 
+       
+      },
     error =>{
       console.log(error);
     })

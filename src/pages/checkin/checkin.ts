@@ -11,7 +11,7 @@ import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.pr
 export class CheckinPage {
 
 timesheet : TimesheetDto = {
-  id :"",
+  id : null,
   startDateTime : new Date().toISOString(),
   endDateTime : "",
   isHoliday : false,
@@ -21,15 +21,11 @@ timesheet : TimesheetDto = {
 
  
 }
-
   constructor(public navCtrl: NavController,
     private timesheetProvider: TimesheetProvider) {
-
-    
-    
   }
   checkin(){
-    console.log("LOAD DATA CARREGOU"); 
+
     this.timesheetProvider.insert(this.timesheet)
       .subscribe(response => {
        
@@ -41,3 +37,4 @@ timesheet : TimesheetDto = {
   }
 
 }
+

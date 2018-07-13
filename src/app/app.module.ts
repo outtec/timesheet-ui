@@ -43,9 +43,9 @@ import { StorageProvider } from '../providers/storage.provider';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthInterceptorProvider,
-    ErrorInterceptorProvider,
-    AuthProvider,
+    //AuthInterceptorProvider,
+    //ErrorInterceptorProvider,
+    //AuthProvider,
     StorageProvider,
     TimesheetProvider
       

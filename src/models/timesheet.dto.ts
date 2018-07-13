@@ -1,5 +1,5 @@
 export interface TimesheetDto {
-    id : string,
+    id : number,
     startDateTime : string;
     endDateTime: string;
 	isHoliday: boolean;
