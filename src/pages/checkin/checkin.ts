@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { NavController, DateTime } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
@@ -9,6 +10,7 @@ import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.pr
   templateUrl: 'checkin.html'
 })
 export class CheckinPage {
+
 
 timesheet : TimesheetDto = {
   id : null,

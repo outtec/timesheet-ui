@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
 import { HttpClient } from '@angular/common/http';
@@ -38,6 +39,7 @@ export class TimesheetsPage {
     error =>{
       console.log(error);
     })
+
   }
 
 }
