@@ -8,12 +8,16 @@
 
 <ion-content>
   <ion-list>
-
-      <button ion-item *ngFor="let lancamento of lancamentos">
-          <h2>{{lancamento.periodDescription}}</h2>
+    <button ion-item *ngFor="let lancamento of lancamentos" (click)="showDetail(lancamento.id)">
+      <ion-card >
+        <ion-card-content>
+          <ion-card-title>
+            <h2>{{lancamento.periodDescription}}</h2><span>{{lancamento.id}}</span>
+          </ion-card-title>
           <p>{{lancamento.startDateTime}}</p>
           <p>{{lancamento.endDateTime}}</p>
-        </button>
-
+        </ion-card-content>
+      </ion-card>
+    </button>
   </ion-list>
 </ion-content>

@@ -17,6 +17,7 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { AuthProvider } from '../providers/auth.provider';
 import { StorageProvider } from '../providers/storage.provider';
+import { TimesheetDetailPage } from '../pages/timesheet-detail/timesheet-detail';
 
 
 
@@ -38,7 +39,7 @@ import { StorageProvider } from '../providers/storage.provider';
   entryComponents: [
     MyApp,
     SigninPage,
-
+  
     CheckinPage,
     TimesheetsPage,
     TabsPage
@@ -49,7 +50,7 @@ import { StorageProvider } from '../providers/storage.provider';
 
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     //AuthInterceptorProvider,
-    //ErrorInterceptorProvider,
+    ErrorInterceptorProvider,
     //AuthProvider,
     StorageProvider,
     TimesheetProvider

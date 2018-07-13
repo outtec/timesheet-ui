@@ -4,6 +4,7 @@ import { NavController, NavParams, Content } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
 import { HttpClient } from '@angular/common/http';
 import { TimesheetDto } from '../../models/timesheet.dto';
+import { TimesheetDetailPage } from '../timesheet-detail/timesheet-detail';
 
 @Component({
   selector: 'page-timesheets',
@@ -17,8 +18,8 @@ export class TimesheetsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private timesheetProvider: TimesheetProvider,
-    public http: HttpClient, ) {
+    private timesheetProvider: TimesheetProvider
+    ) {
   }
   ionViewDidLoad() {
     this.loadData();
@@ -33,13 +34,17 @@ export class TimesheetsPage {
        this.lancamentos = data.data.content;
        console.log(this.lancamentos); 
        console.log(data.data.numberOfElements);     
- 
-       
       },
     error =>{
       console.log(error);
-    })
+    });
 
+  }
+  showDetail(timesheet_id: string){
+    console.log('teste');
+    this.navCtrl.push('TimesheetDetailPage',{
+      timesheet_id: timesheet_id
+    })
   }
 
 }
