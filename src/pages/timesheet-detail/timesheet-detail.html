@@ -1,28 +1,21 @@
 <ion-header>
-
   <ion-navbar>
     <ion-title>Timesheet</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-card>
-
     <ion-card-content>
       <ion-card-title>
         {{timesheet?.periodDescription}}
       </ion-card-title>
       <p>
-        {{timesheet?.startDateTime }}
+        {{timesheet?.startDateTime | date:'dd/MM/yyyy H:mm'}}
       </p>
       <p>
-        {{timesheet?.endtDateTime }}
+        {{timesheet?.endDateTime | date:'dd/MM/yyyy H:mm'}}
       </p>
-
     </ion-card-content>
-
   </ion-card>
- 
 </ion-content>

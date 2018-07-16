@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams, Content } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
-import { HttpClient } from '@angular/common/http';
 import { TimesheetDto } from '../../models/timesheet.dto';
-import { TimesheetDetailPage } from '../timesheet-detail/timesheet-detail';
 
 @Component({
   selector: 'page-timesheets',
@@ -21,6 +19,9 @@ export class TimesheetsPage {
     private timesheetProvider: TimesheetProvider
     ) {
   }
+
+ 
+
   ionViewDidLoad() {
     this.loadData();
   }
@@ -29,8 +30,7 @@ export class TimesheetsPage {
 
     this.timesheetProvider.findAll()
       .subscribe(response => {  
-       const data =(response as any);
-       let nLancamentos = "";
+       let data =(response as any);
        this.lancamentos = data.data.content;
        console.log(this.lancamentos); 
        console.log(data.data.numberOfElements);     
@@ -40,8 +40,8 @@ export class TimesheetsPage {
     });
 
   }
+  
   showDetail(timesheet_id: string){
-    console.log('teste');
     this.navCtrl.push('TimesheetDetailPage',{
       timesheet_id: timesheet_id
     })

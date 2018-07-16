@@ -80,7 +80,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     
     handleDefaultError(errorObj): any {
         let alert = this.alertCtrl.create({
-            title: 'Erro ' + errorObj.status + ': ' + errorObj.error,
+            title: errorObj.errors,
             message: errorObj.message,
             enableBackdropDismiss: false,
             buttons: [
