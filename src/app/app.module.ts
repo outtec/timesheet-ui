@@ -12,12 +12,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpClientModule } from '@angular/common/http';
 import { TimesheetProvider } from '../providers/domain/timesheet/timesheet.provider';
-import { SigninPage } from '../pages/signin/signin';
-import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
-import { AuthProvider } from '../providers/auth.provider';
 import { StorageProvider } from '../providers/storage.provider';
-import { TimesheetDetailPage } from '../pages/timesheet-detail/timesheet-detail';
 
 
 
@@ -26,7 +22,6 @@ import { TimesheetDetailPage } from '../pages/timesheet-detail/timesheet-detail'
     MyApp,
     TimesheetsPage,
     CheckinPage,
-    SigninPage,
     TabsPage
   ],
   imports: [
@@ -38,8 +33,6 @@ import { TimesheetDetailPage } from '../pages/timesheet-detail/timesheet-detail'
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    SigninPage,
-  
     CheckinPage,
     TimesheetsPage,
     TabsPage

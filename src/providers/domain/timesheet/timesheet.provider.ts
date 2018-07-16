@@ -27,11 +27,11 @@ export class TimesheetProvider {
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`);
   }
 
-  insert(obj: TimesheetDto) {
+  insert(obj: TimesheetDto) : Observable<any> {
     var dateStart = new Date(obj.startDateTime);
     var dateEnd = new Date(obj.startDateTime);
-    obj.startDateTime = moment(dateStart).locale('pt-br').format('DD/MM/YYYY HH:mm');
-    obj.endDateTime = moment(dateEnd).locale('pt-br').format('DD/MM/YYYY HH:mm');
+    obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm:ss');
+    obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm:ss');
     return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,
       obj,
       {
@@ -39,4 +39,14 @@ export class TimesheetProvider {
         responseType: 'text'
       });
   }
+
+  update(obj: TimesheetDto, timesheet_id:string): Observable<any> {
+    return this.http.put(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`,
+      obj,
+      {
+        observe: 'response',
+        responseType: 'text'
+      });
+  }
+
 }
