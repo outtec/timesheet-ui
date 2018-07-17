@@ -20,7 +20,9 @@ calculaHorasParte(horaInicial,horaFinal){
 		diffHoras = this.diferencaHoras( horaInicial, horaFinal );
 		somaHoras = this.somaHora( horaInicial, horaFinal );
 		convDiasHoras = this.converteEmDiasHoras(somaHoras) ;
+		return diffHoras;
 	}
+	
 }
 
 /**
