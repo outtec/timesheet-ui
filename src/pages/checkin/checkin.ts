@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, DateTime, Refresher } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
-import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
+import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import * as moment from 'moment';
 
 

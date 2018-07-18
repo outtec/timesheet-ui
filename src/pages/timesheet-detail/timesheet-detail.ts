@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
+import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 
 
 @IonicPage()

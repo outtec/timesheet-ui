@@ -10,22 +10,18 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(public storage: StorageProvider) {
     }
 
-    intercept(req: HttpRequest<null>, next: HttpHandler): Observable<HttpEvent<null>> {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         let n = API_CONFIG.baseUrl.length;
         let isRequestToAPI = req.url.substring(0, n) === API_CONFIG.baseUrl;
 
         let localUser = this.storage.getLocalUser(); 
-        console.log("TOKEN DA REQUISIÇÃO")
-        console.log(localUser.token)
-        if (localUser) { //&& isRequestToAPI
+        if (localUser && isRequestToAPI) {
             const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + localUser.token)});
-            console.log(authReq);
-            return next.handle(req)
-            
-        }else{
+            return next.handle(authReq)
+        }
         return next.handle(req)
-    }}
+    }
     
 }
 
