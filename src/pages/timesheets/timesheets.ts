@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 import { NavController, NavParams, Content } from 'ionic-angular';
-import { TimesheetProvider } from '../../providers/domain/timesheet/timesheet.provider';
+import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import * as moment from 'moment';
-import { calcBindingFlags } from '@angular/core/src/view/util';
+
 
 @Component({
   selector: 'page-timesheets',
@@ -200,13 +200,7 @@ function completaZeroEsquerda( numero ){
   return ( numero < 10 ? "0" + numero : numero);
 }
 ///////////////////
-
-
-
-
-
-
-   
+ 
   }
  
   showDetail(timesheet_id: string){

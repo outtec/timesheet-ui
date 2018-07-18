@@ -11,7 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpClientModule } from '@angular/common/http';
-import { TimesheetProvider } from '../providers/domain/timesheet/timesheet.provider';
+import { TimesheetProvider } from '../providers/domain/timesheet.provider';
 import { ErrorInterceptorProvider } from '../interceptors/error-interceptor';
 import { StorageProvider } from '../providers/storage.provider';
 

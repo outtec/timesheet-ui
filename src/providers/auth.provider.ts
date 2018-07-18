@@ -5,7 +5,7 @@ import { API_CONFIG } from "../config/api.config";
 import { LocalUser } from "../models/local_user";
 import { JwtHelper } from "angular2-jwt";
 import { StorageProvider } from "./storage.provider";
-import { TimesheetProvider } from "./domain/timesheet/timesheet.provider";
+import { TimesheetProvider } from "./domain/timesheet.provider";
 
 @Injectable()
 export class AuthProvider {

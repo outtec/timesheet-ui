@@ -37,8 +37,7 @@ export class SigninPage {
     this.auth.refreshToken()
     .subscribe(response => {
       this.auth.successfullLogin(response.headers.get('Authorization'));  
-      console.log("REFRESH")
-      this.navCtrl.setRoot("TimesheetPage");  
+      this.navCtrl.setRoot("CheckinPage");  
     },
     error => {}) 
   }
@@ -48,7 +47,7 @@ export class SigninPage {
     this.auth.authenticate(this.credenciais)
       .subscribe(response => {   
         this.auth.successfullLogin(response.headers.get('Authorization'));  
-          
+        this.navCtrl.setRoot("CheckinPage");
       },
       error => {})
   }
