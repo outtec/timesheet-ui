@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
 import { AuthProvider } from '../../providers/auth.provider';
-import { TimesheetsPage } from '../timesheets/timesheets';
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -14,7 +14,7 @@ export class SigninPage {
 
   credenciais: CredenciaisDTO = {
     email: "",
-    senha: ""
+    password: ""
   };
 
   constructor(
@@ -37,7 +37,7 @@ export class SigninPage {
     this.auth.refreshToken()
     .subscribe(response => {
       this.auth.successfullLogin(response.headers.get('Authorization'));  
-      this.navCtrl.setRoot("CheckinPage");  
+      this.navCtrl.setRoot(TabsPage);  
     },
     error => {}) 
   }
@@ -47,7 +47,7 @@ export class SigninPage {
     this.auth.authenticate(this.credenciais)
       .subscribe(response => {   
         this.auth.successfullLogin(response.headers.get('Authorization'));  
-        this.navCtrl.setRoot("CheckinPage");
+        this.navCtrl.setRoot(TabsPage);
       },
       error => {})
   }

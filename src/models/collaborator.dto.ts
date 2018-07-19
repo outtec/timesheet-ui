@@ -1,4 +1,4 @@
-export interface CollaboratorDTO {
+export interface CollaboratorDto {
     id: string;
     nome: string;
     email: string;

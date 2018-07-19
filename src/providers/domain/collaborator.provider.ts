@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
-import { CollaboratorDTO } from "../../models/collaborator.dto";
+import { CollaboratorDto } from "../../models/collaborator.dto";
 import { Observable } from "rxjs";
 import { StorageProvider } from "../storage.provider";
 import { ImageUtilProvider } from "../image-util.provider";
@@ -28,7 +28,7 @@ export class CollaboratorProvider {
         return this.http.get(url, {responseType: 'blob'});
     }
 
-    insert(obj: CollaboratorDTO): Observable<any> {
+    insert(obj: CollaboratorDto): Observable<any> {
         return this.http.post(`${API_CONFIG.baseUrl}/collaborators`,
         obj,
         {

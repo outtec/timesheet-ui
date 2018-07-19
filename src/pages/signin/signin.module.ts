@@ -4,14 +4,17 @@ import { SigninPage } from './signin';
 
 @NgModule({
     declarations: [
-      SigninPage
+      SigninPage,
     ],
     imports: [
-        IonicPageModule.forChild(SigninPage)
+        IonicPageModule.forChild(SigninPage),
     ],
     entryComponents: [
     ],
     providers: [
+    ],
+    exports:[
+      SigninPage,
     ]
   })
   export class HomeModule {}

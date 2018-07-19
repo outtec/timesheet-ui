@@ -4,7 +4,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { CameraOptions, Camera } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StorageProvider } from '../../providers/storage.provider';
-import { CollaboratorDTO } from '../../models/collaborator.dto';
+import { CollaboratorDto } from '../../models/collaborator.dto';
 import { CollaboratorProvider} from  '../../providers/domain/collaborator.provider';
 
 
@@ -15,7 +15,7 @@ import { CollaboratorProvider} from  '../../providers/domain/collaborator.provid
 })
 export class ProfilePage {
 
-  collaborator: CollaboratorDTO;
+  collaborator: CollaboratorDto;
   picture: string;
   cameraOn: boolean = false;
   profileImage;
@@ -40,7 +40,7 @@ export class ProfilePage {
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
         .subscribe(response => {
-          this.collaborator = response as CollaboratorDTO; //Casting no JS
+          this.collaborator = response as CollaboratorDto; //Casting no JS
           this.getImageIfExists();
         },
           error => {
