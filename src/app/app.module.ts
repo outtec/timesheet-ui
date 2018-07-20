@@ -14,30 +14,20 @@ import { AuthProvider } from '../providers/auth.provider';
 import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ImageUtilProvider } from '../providers/image-util.provider';
 import { CollaboratorProvider } from '../providers/domain/collaborator.provider';
-import { TabsPage } from '../pages/tabs/tabs';
-import { CheckinPage } from '../pages/checkin/checkin';
-import { TimesheetsPage } from '../pages/timesheets/timesheets';
-
 
 
 @NgModule({
   declarations: [
-    MyApp,
-    TabsPage,
-    CheckinPage,
-    TimesheetsPage
-  ],
+    MyApp
+ ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    TabsPage,
-    CheckinPage,
-    TimesheetsPage
+    MyApp
   ],
   providers: [
     StatusBar,
@@ -49,8 +39,7 @@ import { TimesheetsPage } from '../pages/timesheets/timesheets';
     StorageProvider,
     TimesheetProvider,
     ImageUtilProvider,
-    TimesheetProvider,
-    CollaboratorProvider     
+    CollaboratorProvider   
   ]
 })
 export class AppModule {}

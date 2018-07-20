@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { API_CONFIG } from "../../config/api.config";
 import { CollaboratorDto } from "../../models/collaborator.dto";
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Rx";
 import { StorageProvider } from "../storage.provider";
 import { ImageUtilProvider } from "../image-util.provider";
 
@@ -19,8 +19,8 @@ export class CollaboratorProvider {
         return this.http.get(`${API_CONFIG.baseUrl}/collaborators/${id}`);
     }    
 
-    findByEmail(email: string){
-        return this.http.get(`${API_CONFIG.baseUrl}/collaborators/email?value=${email}`);
+    findByEmail(email: string) : Observable<CollaboratorDto> {
+        return this.http.get<CollaboratorDto>(`${API_CONFIG.baseUrl}/collaborators/email?value=${email}`);
     }
 
     getImageFromBucket(id: string) : Observable<any> {

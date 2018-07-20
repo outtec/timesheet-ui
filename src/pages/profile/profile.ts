@@ -37,6 +37,7 @@ export class ProfilePage {
 
   loadData() {
     let localUser = this.storage.getLocalUser();
+    console.log(localUser)
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
         .subscribe(response => {
@@ -45,11 +46,11 @@ export class ProfilePage {
         },
           error => {
             if (error.status === 403) {
-              this.navCtrl.setRoot('HomePage');
+              this.navCtrl.setRoot('SignPage');
             }
           })
     } else {
-      this.navCtrl.setRoot('HomePage');
+      this.navCtrl.setRoot('SignPage');
     }
   }
 

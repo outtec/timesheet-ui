@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { CredenciaisDTO } from '../../models/credenciais.dto';
 import { AuthProvider } from '../../providers/auth.provider';
-import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -11,12 +10,6 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'signin.html'
 })
 export class SigninPage {
-
-  credenciais: CredenciaisDTO = {
-    email: "",
-    password: ""
-  };
-
   constructor(
     public navCtrl: NavController,
     public menu: MenuController,
@@ -24,6 +17,11 @@ export class SigninPage {
   ) {
 
   }
+  
+  credenciais: CredenciaisDTO = {
+    email: "",
+    password: ""
+  };
 
   ionViewWillEnter() {
     this.menu.swipeEnable(false);
@@ -37,17 +35,16 @@ export class SigninPage {
     this.auth.refreshToken()
     .subscribe(response => {
       this.auth.successfullLogin(response.headers.get('Authorization'));  
-      this.navCtrl.setRoot(TabsPage);  
+      this.navCtrl.setRoot('MenuPage');  
     },
     error => {}) 
   }
 
   login() {
-    console.log("Iniciando autenticação")
     this.auth.authenticate(this.credenciais)
       .subscribe(response => {   
         this.auth.successfullLogin(response.headers.get('Authorization'));  
-        this.navCtrl.setRoot(TabsPage);
+        this.navCtrl.setRoot('MenuPage');
       },
       error => {})
   }

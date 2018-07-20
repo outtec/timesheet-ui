@@ -40,7 +40,7 @@ export class TimesheetsPage {
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
         .subscribe(response => {
-          console.log(response)
+          this.collaborator = response as CollaboratorDto;
         }, error => {
           if (error.status === 403) {
             this.navCtrl.setRoot('SigninPage');
@@ -54,9 +54,9 @@ export class TimesheetsPage {
   }
 
 
-  private loadData(id:string) {
+  private loadData() {
    
-    this.timesheetProvider.findByCollaborator(id)
+    this.timesheetProvider.findByCollaborator(this.collaborator.id)
       .subscribe(response => {
         let data = (response as any);
         this.lancamentos = data.data.content;

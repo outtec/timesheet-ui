@@ -24,7 +24,7 @@ export class CheckinPage {
 
   timesheet: TimesheetDto = {
     id: "",
-    startDateTime: "",
+    startDateTime: moment(new Date()).locale('pr-br').format(),
     endDateTime: "",
     isHoliday: false,
     isInTravel: false,
@@ -38,17 +38,14 @@ export class CheckinPage {
     private collaboratorProvider: CollaboratorProvider) {
   }
   
-  ionViewDidEnter(){
-    this.loadData();
-  }
 
   ionViewDidLoad() {
     let localUser = this.storageProvider.getLocalUser();
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
         .subscribe(response => {
-          let data = (response as any);
-          this.collaborator = data;
+        this.collaborator = response as CollaboratorDto;
+        this.loadData();
         }, error => {
           if (error.status === 403) {
             this.navCtrl.setRoot('SigninPage');
@@ -84,12 +81,12 @@ export class CheckinPage {
 
   private loadData() {
     let lancamentos: any;
-    this.timesheetProvider.findByCollaborator("4")
+    this.timesheetProvider.findByCollaborator(this.collaborator.id)
       .subscribe(response => {
         let data = (response as any);
         lancamentos = data.data.content;
         console.log(lancamentos)
-        if (lancamentos != "") {
+        if (lancamentos = "") {
           this.lancamentosPorData = lancamentos.filter(this.byDate)
           if (this.lancamentosPorData[0].startDateTime === this.lancamentosPorData[0].endDateTime) {
             this.timesheet.startDateTime = new Date(moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format()).toISOString();
@@ -99,6 +96,7 @@ export class CheckinPage {
             this.timesheet.isHoliday = this.lancamentosPorData[0].isHoliday;
           }
         } else {
+          this.timesheet.startDateTime = moment(new Date()).locale('pr-br').format();
           this.setCheckinTrue();
         }
       },
