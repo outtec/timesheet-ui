@@ -3,15 +3,10 @@ import { NgModule } from '@angular/core';
 import { SigninPage } from './signin';
 
 @NgModule({
-    declarations: [
-      SigninPage
-    ],
-    imports: [
-        IonicPageModule.forChild(SigninPage)
-    ],
-    entryComponents: [
-    ],
-    providers: [
-    ]
+    declarations: [SigninPage],
+    imports: [IonicPageModule.forChild(SigninPage)],
+    entryComponents: [],
+    providers: [],
+    exports:[SigninPage]
   })
-  export class HomeModule {}
+  export class SigninModule {}

@@ -1,19 +1,18 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" item-start></ion-icon>
     </button>
     <ion-title>Profile</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
   <ion-avatar>
-    <img class="circle" [src]="profileImage">
+    <img class="circle" [src]="collaborator?.imageUrl ">
   </ion-avatar>
-  <h2 text-center>{{cliente?.nome}}</h2>
-  <p text-center>{{cliente?.email}}</p>
+  <h2 text-center>{{collaborator?.nome}}</h2>
+  <p text-center>{{collaborator?.email}}</p>
 
   <ion-card>
     <ion-card-header>

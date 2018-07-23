@@ -17,19 +17,20 @@ export class TimesheetProvider {
   constructor(public http: HttpClient) {
 
   }
-  findAll(): Observable<TimesheetDto[]> {
-    console.log("provider timsheet GET na API");
-    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=3`);
+  findByCollaborator(thimesheet_collaboratorId: string): Observable<TimesheetDto[]> {
+    console.log( "id :" + thimesheet_collaboratorId) 
+
+    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=${thimesheet_collaboratorId}`);
 
   }
 
-  findById(timesheet_id:string){
+  findById(timesheet_id: string){
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`);
   }
 
   insert(obj: TimesheetDto) : Observable<any> {
     var dateStart = new Date(obj.startDateTime);
-    var dateEnd = new Date(obj.startDateTime);
+    var dateEnd = new Date(obj.endDateTime);
     obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm:ss');
     obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm:ss');
     return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,
@@ -40,7 +41,7 @@ export class TimesheetProvider {
       });
   }
 
-  update(obj: TimesheetDto, timesheet_id:string): Observable<any> {
+  update(obj: TimesheetDto, timesheet_id: string): Observable<any> {
     return this.http.put(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`,
       obj,
       {

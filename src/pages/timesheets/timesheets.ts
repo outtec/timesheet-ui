@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams, Content } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import * as moment from 'moment';
+import { StorageProvider } from '../../providers/storage.provider';
+import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
+import { CollaboratorDto } from '../../models/collaborator.dto';
 
-
+@IonicPage()
 @Component({
   selector: 'page-timesheets',
   templateUrl: 'timesheets.html',
@@ -14,42 +17,64 @@ import * as moment from 'moment';
 export class TimesheetsPage {
 
   nlancamentos: TimesheetDto[];
+  collaborator: CollaboratorDto;
+  id: string;
+
   public lancamentos : any;
   public lancamentosConts : any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private timesheetProvider: TimesheetProvider
+    private timesheetProvider: TimesheetProvider,
+    private storageProvider: StorageProvider,
+    private collaboratorProvider: CollaboratorProvider
     ) {
   }
 
- 
-
   ionViewDidLoad() {
-    this.loadData();
+
+    }
+
+  ionViewDidEnter(){
+    let localUser = this.storageProvider.getLocalUser();
+    if (localUser && localUser.email) {
+      this.collaboratorProvider.findByEmail(localUser.email)
+        .subscribe(response => {
+          this.collaborator = response as CollaboratorDto;
+        }, error => {
+          if (error.status === 403) {
+            this.navCtrl.setRoot('SigninPage');
+          }
+        })
+      } else {
+        this.navCtrl.setRoot('SigninPage');
+      }
+    
+    
   }
 
-  private loadData() {
 
-    this.timesheetProvider.findAll()
-      .subscribe(response => {  
-       let data =(response as any);
-       this.lancamentos = data.data.content;
-       console.log(this.lancamentos[0].startDateTime); 
-       console.log(data.data.numberOfElements);   
-       this.lancamentosConts = this.lancamentos.map(function(obj){
-        let horaInicial : any;
-        let horaFinal : any;
-        horaInicial = moment(obj.startDateTime).format("HH:mm")
-        horaFinal = moment(obj.endDateTime).format("HH:mm")
-        console.log(calculaHorasParte(horaInicial,horaFinal)) 
-        return calculaHorasParte(horaInicial,horaFinal);
-      });
-     
-    },
-    error =>{
-      console.log(error);
-    });
+  private loadData() {
+   
+    this.timesheetProvider.findByCollaborator(this.collaborator.id)
+      .subscribe(response => {
+        let data = (response as any);
+        this.lancamentos = data.data.content;
+        console.log(this.lancamentos[0].startDateTime);
+        console.log(data.data.numberOfElements);
+        this.lancamentosConts = this.lancamentos.map(function (obj) {
+          let horaInicial: any;
+          let horaFinal: any;
+          horaInicial = moment(obj.startDateTime).format("HH:mm")
+          horaFinal = moment(obj.endDateTime).format("HH:mm")
+          console.log(calculaHorasParte(horaInicial, horaFinal))
+          return calculaHorasParte(horaInicial, horaFinal);
+        });
+
+      },
+        error => {
+          console.log(error);
+        });
 
 
 
