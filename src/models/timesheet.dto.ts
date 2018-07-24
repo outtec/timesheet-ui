@@ -6,4 +6,5 @@ export interface TimesheetDto {
 	isInTravel : boolean;
 	periodDescription : string;
 	collaboratorId : string;
+	totalTime: string;
 }

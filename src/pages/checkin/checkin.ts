@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, LoadingController } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import * as moment from 'moment';
+import 'moment/locale/pt-br';
 import { CollaboratorDto } from '../../models/collaborator.dto';
 import { StorageProvider } from '../../providers/storage.provider';
 import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
+import { Content } from 'ionic-angular';
 
 
 
@@ -16,30 +18,34 @@ import { CollaboratorProvider } from '../../providers/domain/collaborator.provid
   templateUrl: 'checkin.html'
 })
 export class CheckinPage {
-
+  @ViewChild(Content) content: Content;
+  
   public isCheckInDisabled: boolean;
   public isCheckOutDisabled: boolean;
-  public lancamentosPorData: any;
+  public lancamentosPorData: TimesheetDto[];
   collaborator: CollaboratorDto;
 
   timesheet: TimesheetDto = {
     id: "",
-    startDateTime: moment(new Date()).locale('pr-br').format(),
+    startDateTime: "",
     endDateTime: "",
     isHoliday: false,
     isInTravel: false,
     periodDescription: "",
     collaboratorId: "",
+    totalTime:""
   }
 
   constructor(public navCtrl: NavController,
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
-    private collaboratorProvider: CollaboratorProvider) {
+    private collaboratorProvider: CollaboratorProvider,
+    private loadingCtrl: LoadingController
+  ) {
   }
   
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     let localUser = this.storageProvider.getLocalUser();
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
@@ -55,7 +61,8 @@ export class CheckinPage {
       this.navCtrl.setRoot('SigninPage');
     }
   }
-  
+
+ 
   checkin() {
     this.timesheet.collaboratorId = this.collaborator.id
     this.timesheetProvider.insert(this.timesheet)
@@ -75,7 +82,7 @@ export class CheckinPage {
       },
         error => {
           console.log(error);
-          console.log(this.timesheet)
+
         })
   }
 
@@ -85,18 +92,19 @@ export class CheckinPage {
       .subscribe(response => {
         let data = (response as any);
         lancamentos = data.data.content;
-        console.log(lancamentos)
-        if (lancamentos = "") {
-          this.lancamentosPorData = lancamentos.filter(this.byDate)
-          if (this.lancamentosPorData[0].startDateTime === this.lancamentosPorData[0].endDateTime) {
-            this.timesheet.startDateTime = new Date(moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format()).toISOString();
-            this.timesheet.endDateTime = "";
-            this.timesheet.periodDescription = this.lancamentosPorData[0].periodDescription;
-            this.timesheet.isInTravel = this.lancamentosPorData[0].isInTravel;
-            this.timesheet.isHoliday = this.lancamentosPorData[0].isHoliday;
-          }
+        this.lancamentosPorData = lancamentos.filter(this.byDate)
+        let datei = moment(this.lancamentosPorData[0].startDateTime).format('DD/MM/YYYY HH:mm')
+        let datef = moment(this.lancamentosPorData[0].endDateTime).format('DD/MM/YYYY HH:mm')
+        if (this.lancamentosPorData.length != 0 && (datei === datef)) {
+          this.timesheet.startDateTime = moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format();
+          this.timesheet.endDateTime = "";
+          this.timesheet.periodDescription = this.lancamentosPorData[0].periodDescription;
+          this.timesheet.isInTravel = this.lancamentosPorData[0].isInTravel;
+          this.timesheet.isHoliday = this.lancamentosPorData[0].isHoliday;
+          console.log(this.lancamentosPorData[0].periodDescription)
+          this.setCheckoutTrue();
         } else {
-          this.timesheet.startDateTime = moment(new Date()).locale('pr-br').format();
+          this.timesheet.startDateTime = moment(new Date().toISOString()).locale('pt-br').format();
           this.setCheckinTrue();
         }
       },
@@ -105,12 +113,12 @@ export class CheckinPage {
         })
   }
   setCheckinTrue() {
-    this.timesheet.startDateTime = moment(new Date()).locale('pt-br').format();
     this.isCheckInDisabled = false;
     this.isCheckOutDisabled = true;
   }
 
   setCheckoutTrue() {
+    this.timesheet.endDateTime = moment(new Date().toISOString()).locale('pt-br').format();
     this.isCheckInDisabled = true;
     this.isCheckOutDisabled = false;
   }
@@ -131,6 +139,7 @@ export class CheckinPage {
   byTravel(obj) {
     return obj.isInTravel == false;
   }
+
 
 }
 

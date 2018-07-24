@@ -1,20 +1,18 @@
 <ion-header>
   <ion-navbar>
-    <ion-buttons start>
       <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    </ion-buttons>
-    <ion-title>Meus Lançamentos</ion-title>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Lançamentos</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
   <ion-list>
     <button ion-item *ngFor="let lancamento of lancamentos" (click)="showDetail(lancamento.id)">
           <h2>{{lancamento.periodDescription}}</h2>
           <h3>{{lancamento.startDateTime | date:'dd/MM/yyyy H:mm'}}</h3>
-          <h3> {{lancamento.endDateTime | date:'dd/MM/yyyy H:mm'}}</h3>
+          <h3>{{lancamento.endDateTime | date:'dd/MM/yyyy H:mm'}}</h3>
+          <h3>{{lancamento.totalTime }}</h3>
      </button>
   </ion-list>
  

@@ -1,13 +1,11 @@
 <ion-header>
-    <ion-navbar>
-      <ion-buttons start>
-        <button ion-button menuToggle>
+  <ion-navbar>
+      <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      </ion-buttons>
-      <ion-title>Checkin</ion-title>
-    </ion-navbar>
-  </ion-header>
+    <ion-title>Checkin</ion-title>
+  </ion-navbar>
+</ion-header>
 <ion-content padding>
 
   <ion-list>
@@ -53,8 +51,8 @@
 <ion-list>
   <ion-item ion-item *ngFor="let lancamento of lancamentosPorData">
     <h2>{{lancamento.periodDescription}}</h2>
-    <h2>{{lancamento.startDateTime | date:'dd/MM/yyyy H:mm'}}</h2>
-    <h2>{{lancamento.endDateTime | date:'dd/MM/yyyy H:mm'}}</h2>
+    <h2>{{lancamento.startDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
+    <h2>{{lancamento.endDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
   </ion-item>
 </ion-list>
 </ion-content>
