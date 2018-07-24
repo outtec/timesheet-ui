@@ -8,14 +8,51 @@
   <ion-card>
     <ion-card-content>
       <ion-card-title>
-        {{timesheet?.periodDescription}}
+
+        <ion-row>
+          <ion-col>
+            <h2>
+              {{ts?.periodDescription}}
+            </h2>
+
+          </ion-col>
+          <ion-col>
+            <h2>
+              {{ts?.startDateTime | date:'dd/MM/yyyy'}}
+            </h2>
+
+          </ion-col>
+        </ion-row>
+
       </ion-card-title>
-      <p>
-        {{timesheet?.startDateTime | date:'dd/MM/yyyy H:mm'}}
-      </p>
-      <p>
-        {{timesheet?.endDateTime | date:'dd/MM/yyyy H:mm'}}
-      </p>
+      <ion-row>
+        <ion-col>
+          <h2>
+            <ion-icon name="pin" item-start large></ion-icon>
+            {{ts?.startDateTime | date:'HH:mm'}}
+          </h2>
+
+        </ion-col>
+        <ion-col>
+          <h2>
+            <ion-icon name="log-out" item-start large></ion-icon>
+            {{ts?.endDateTime | date:'HH:mm'}}
+          </h2>
+        </ion-col>
+      </ion-row>
+      <h2>
+        <ion-icon name="alarm" item-start large></ion-icon>
+        {{ts?.totalTime}}
+      </h2>
     </ion-card-content>
+  
   </ion-card>
+  <ion-row>
+      <ion-col>
+        <button ion-button color="secondary" block (click)="editar()">Editar</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button color="danger" block (click)="deletar()">Excluir</button>
+      </ion-col>
+    </ion-row>
 </ion-content>

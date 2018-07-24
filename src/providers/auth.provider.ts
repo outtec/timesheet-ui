@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { CredenciaisDTO } from "../models/credenciais.dto";
+import { CredenciaisDto } from "../models/credenciais.dto";
 import { API_CONFIG } from "../config/api.config";
 import { LocalUser } from "../models/local_user";
 import { JwtHelper } from "angular2-jwt";
@@ -16,7 +16,7 @@ export class AuthProvider {
         public storage: StorageProvider) {
     }
    
-    authenticate(credenciais: CredenciaisDTO) {
+    authenticate(credenciais: CredenciaisDto) {
         console.log(credenciais);
         return this.http.post(
             `${API_CONFIG.baseUrl}/login`, 

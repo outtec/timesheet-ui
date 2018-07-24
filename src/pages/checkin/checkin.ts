@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { NavController, IonicPage, LoadingController } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
@@ -57,8 +56,6 @@ export class CheckinPage {
             this.navCtrl.setRoot('SigninPage');
           }
         })
-    } else {
-      this.navCtrl.setRoot('SigninPage');
     }
   }
 
@@ -92,10 +89,8 @@ export class CheckinPage {
       .subscribe(response => {
         let data = (response as any);
         lancamentos = data.data.content;
-        this.lancamentosPorData = lancamentos.filter(this.byDate)
-        let datei = moment(this.lancamentosPorData[0].startDateTime).format('DD/MM/YYYY HH:mm')
-        let datef = moment(this.lancamentosPorData[0].endDateTime).format('DD/MM/YYYY HH:mm')
-        if (this.lancamentosPorData.length != 0 && (datei === datef)) {
+        this.lancamentosPorData = lancamentos.filter(this.byDate)    
+        if (this.lancamentosPorData.length != 0 && (moment(this.lancamentosPorData[0].startDateTime).format('DD/MM/YYYY HH:mm') === moment(this.lancamentosPorData[0].endDateTime).format('DD/MM/YYYY HH:mm'))) {
           this.timesheet.startDateTime = moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format();
           this.timesheet.endDateTime = "";
           this.timesheet.periodDescription = this.lancamentosPorData[0].periodDescription;

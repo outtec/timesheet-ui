@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { IonicPage, NavController,  Nav } from 'ionic-angular';
+import { Nav } from 'ionic-angular';
 import { CheckinPage } from '../pages/checkin/checkin';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
 

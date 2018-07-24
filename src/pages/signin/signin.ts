@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage, MenuController } from 'ionic-angular';
-import { CredenciaisDTO } from '../../models/credenciais.dto';
+import { CredenciaisDto } from '../../models/credenciais.dto';
 import { AuthProvider } from '../../providers/auth.provider';
 
 
@@ -18,7 +18,7 @@ export class SigninPage {
 
   }
   
-  credenciais: CredenciaisDTO = {
+  credenciais: CredenciaisDto = {
     email: "",
     password: ""
   };

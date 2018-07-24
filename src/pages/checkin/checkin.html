@@ -1,8 +1,8 @@
 <ion-header>
   <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Checkin</ion-title>
   </ion-navbar>
 </ion-header>
@@ -14,45 +14,45 @@
       <ion-icon name="pin" item-start></ion-icon>
       <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="timesheet.startDateTime"></ion-datetime>
     </ion-item>
-  
+
     <ion-item>
-        <ion-icon name="log-out" item-start></ion-icon>
-        <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="timesheet.endDateTime"></ion-datetime>
-      </ion-item>
+      <ion-icon name="log-out" item-start></ion-icon>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="timesheet.endDateTime"></ion-datetime>
+    </ion-item>
     <ion-item>
-        <ion-icon name="plane" item-start></ion-icon>
-        <ion-label>Em Viagem</ion-label>
-        <ion-toggle color="dark" [(ngModel)]="timesheet.isInTravel"></ion-toggle>
-      </ion-item>
+      <ion-icon name="plane" item-start></ion-icon>
+      <ion-label>Em Viagem</ion-label>
+      <ion-toggle color="dark" [(ngModel)]="timesheet.isInTravel"></ion-toggle>
+    </ion-item>
 
     <ion-item>
       <ion-icon name="beer" item-start></ion-icon>
       <ion-label>Feriado</ion-label>
-      <ion-toggle  color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
+      <ion-toggle color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
     </ion-item>
 
     <ion-item>
-        <ion-icon name="list" item-start></ion-icon>
-        <ion-input type="text" [(ngModel)]="timesheet.periodDescription"></ion-input>
+      <ion-icon name="list" item-start></ion-icon>
+      <ion-input type="text" [(ngModel)]="timesheet.periodDescription"></ion-input>
     </ion-item>
 
-</ion-list>
+  </ion-list>
 
-  
+
   <ion-row>
-      <ion-col>
-          <button ion-button color="primary" block [disabled]="isCheckInDisabled" (click)="checkin()">Check In</button>
-      </ion-col>
-      <ion-col>
-          <button ion-button color="danger" block [disabled]="isCheckOutDisabled" (click)="checkout()">Check Out</button>
-      </ion-col>
-    </ion-row>
-    
-<ion-list>
-  <ion-item ion-item *ngFor="let lancamento of lancamentosPorData">
-    <h2>{{lancamento.periodDescription}}</h2>
-    <h2>{{lancamento.startDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
-    <h2>{{lancamento.endDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
-  </ion-item>
-</ion-list>
+    <ion-col>
+      <button ion-button color="primary" block [disabled]="isCheckInDisabled" (click)="checkin()">Check In</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button color="danger" block [disabled]="isCheckOutDisabled" (click)="checkout()">Check Out</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-list>
+    <ion-item ion-item *ngFor="let lancamento of lancamentosPorData">
+      <h2>{{lancamento.periodDescription}}</h2>
+      <h2>{{lancamento.startDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
+      <h2>{{lancamento.endDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
+    </ion-item>
+  </ion-list>
 </ion-content>
