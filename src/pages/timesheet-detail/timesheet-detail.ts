@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import { TimesheetDto } from '../../models/timesheet.dto';
+
 
 
 @IonicPage()
@@ -13,6 +14,11 @@ export class TimesheetDetailPage {
 
   ts: any;
   confirmAction: any;
+  dataInicial: any;
+  public isDisabled: boolean;
+  public isConfirm: boolean;
+  public isEdit: boolean;
+  public isDelete: boolean;
 
   timesheet: TimesheetDto = {
     id: "",
@@ -32,7 +38,15 @@ export class TimesheetDetailPage {
     private alertCtrl: AlertController) {
   }
 
+  @ViewChild('datePicker') datePicker;
+  open() {
+    this.datePicker.open();
+  }
+    
+
   ionViewDidLoad() {
+    this.isDisabled = true;
+    this.isConfirm = true;
     this.timesheetProvider.findById(this.navParams.get('timesheet_id'))
       .subscribe(response => {
         console.log(response['data']);
@@ -42,14 +56,23 @@ export class TimesheetDetailPage {
   }
 
   editar() {
-    this.timesheetProvider.update(this.ts, this.ts.id)
-      .subscribe(response => {
-        console.log(response);
-      },
-        error => {
-          console.log(error);
+    console.log(this.ts.periodDescription)
+    this.isConfirm = false;
+    this.isEdit = true;
+    this.isDelete = true;
+    this.isDisabled = false;
+  }
 
-        })
+  confirmar(){
+    console.log(" PASSANDO O TS CERTO :"+this.ts.endDateTime)
+    this.timesheetProvider.update(this.ts, this.ts.id)
+    .subscribe(response => {
+      console.log(response);
+    },
+      error => {
+        console.log(error);
+
+      })
   }
 
   deletar() {

@@ -3,7 +3,6 @@ import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { CredenciaisDto } from '../../models/credenciais.dto';
 import { AuthProvider } from '../../providers/auth.provider';
 
-
 @IonicPage()
 @Component({
   selector: 'page-signin',
@@ -22,14 +21,6 @@ export class SigninPage {
     email: "",
     password: ""
   };
-
-  ionViewWillEnter() {
-    this.menu.swipeEnable(false);
-  }
-
-  ionViewDidLeave() {
-    this.menu.swipeEnable(true);
-  }
 
   ionViewDidEnter() {
     this.auth.refreshToken()

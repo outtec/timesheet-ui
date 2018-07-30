@@ -27,7 +27,7 @@ export class MyApp {
   pages: PageInterface[] = [
     {title:'Checkin', pageName:'TabsPage', tabComponent: CheckinPage, index:0, icon:'pin'},
     {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'list'},
-    {title:'Perfil', pageName:'ProfilePage', icon:'list'}
+    {title:'Perfil', pageName:'ProfilePage', icon:'contact'}
   ]
   constructor(platform: Platform, 
     statusBar: StatusBar, splashScreen: SplashScreen) {

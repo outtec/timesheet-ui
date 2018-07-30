@@ -21,21 +21,21 @@
     </ion-item>
     <ion-item>
       <ion-icon name="plane" item-start></ion-icon>
-      <ion-label>Em Viagem</ion-label>
+      <ion-label >Em Viagem</ion-label>
       <ion-toggle color="dark" [(ngModel)]="timesheet.isInTravel"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-icon name="beer" item-start></ion-icon>
-      <ion-label>Feriado</ion-label>
+      <ion-label >Feriado</ion-label>
       <ion-toggle color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-icon name="list" item-start></ion-icon>
+      <ion-label floating>Descrição do Período</ion-label>
       <ion-input type="text" [(ngModel)]="timesheet.periodDescription"></ion-input>
     </ion-item>
-
   </ion-list>
 
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
 
 @IonicPage()
 @Component({
@@ -15,28 +16,30 @@ export class SignupPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public collaboratorProvider: CollaboratorProvider) {
       
       this.formGroup = this.formBuilder.group({
-        nome: ['Joaquim', [Validators.required, Validators.minLength(5), Validators.maxLength(120)]],
-        email: ['joaquim@gmail.com', [Validators.required, Validators.email]],
-        senha: ['123', [Validators.required]],
+        name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required]],
       });
     }
     
     ionViewDidLoad() {
     }
     
- /*   
+    
     signupUser() {
-      this.clienteService.insert(this.formGroup.value)
+      console.log(this.formGroup.value)
+      this.collaboratorProvider.insert(this.formGroup.value)
       .subscribe(response => {
         this.showInsertOk()
       },
       error => {});
     }
    
- */ 
+ 
     showInsertOk(): any {
       let alert = this.alertCtrl.create({
         title: 'Sucesso!',

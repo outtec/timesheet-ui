@@ -26,7 +26,7 @@ export class TimesheetProvider {
   insert(obj: TimesheetDto) : Observable<any> {
     let dateEnd ;
     let dateStart ;
-    if (obj.endDateTime = "  ") {obj.endDateTime = obj.startDateTime;}
+    if (obj.endDateTime = " ") {obj.endDateTime = obj.startDateTime;}
     dateStart = new Date(obj.startDateTime);
     dateEnd = new Date(obj.endDateTime)
     obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm:ss');
@@ -47,6 +47,13 @@ export class TimesheetProvider {
   }
 
   update(obj: TimesheetDto, timesheet_id: string): Observable<any> {
+    let dateEnd;
+    let dateStart;
+    dateStart = new Date(obj.startDateTime);
+    dateEnd = new Date(obj.endDateTime)
+    obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm:ss');
+    obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm:ss');
+
     let horaInicial;
     let horaFinal;
     horaInicial = moment(obj.startDateTime).format("HH:mm");
