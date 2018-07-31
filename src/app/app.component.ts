@@ -6,7 +6,6 @@ import { Nav } from 'ionic-angular';
 import { CheckinPage } from '../pages/checkin/checkin';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
 
-
 export interface PageInterface {
   title: string;
   pageName: string;
@@ -29,13 +28,20 @@ export class MyApp {
     {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'list'},
     {title:'Perfil', pageName:'ProfilePage', icon:'contact'}
   ]
+
+  
   constructor(platform: Platform, 
     statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+
+
   }
+
+
 
   openPage(page: PageInterface) {
     let params = {};

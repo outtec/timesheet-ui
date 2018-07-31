@@ -1,30 +1,18 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Timesheets
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  <ion-list>
-
+  <img src="assets/imgs/ts.png" alt="logo">
+  <form>
     <ion-item>
       <ion-label stacked>Username</ion-label>
       <ion-input [(ngModel)]="credenciais.email" name="email" type="text"></ion-input>
     </ion-item>
-
     <ion-item>
       <ion-label stacked>Password</ion-label>
       <ion-input [(ngModel)]="credenciais.password" name="password" type="password"></ion-input>
     </ion-item>
-  </ion-list>
-
+  </form>
   <div padding>
     <button ion-button color="primary" block (click)="login()">Entrar</button>
     <button ion-button outline block outline (click)="signup()">Registrar</button>
   </div>
-
-
 
 </ion-content>

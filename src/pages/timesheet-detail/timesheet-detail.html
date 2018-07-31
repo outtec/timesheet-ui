@@ -8,11 +8,7 @@
   <ion-card>
     <ion-card-header>
       <ion-row>
-        <ion-col>
-          <h2 text-wrap>
-            {{ts?.periodDescription}}
-          </h2>
-        </ion-col>
+
         <ion-col>
           <h2>
             <ion-icon name="calendar" item-start></ion-icon>
@@ -24,16 +20,22 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                  <ion-label floating>Entrada</ion-label>
+                <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.startDateTime | date:'HH:mm'"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col>
+          
+              <ion-item>
+                  <ion-label floating>Saída</ion-label>
+                <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.endDateTime | date:'HH:mm'"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-        <ion-item>
-          <ion-icon name="pin" item-start></ion-icon>
-          <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.startDateTime | date:'HH:mm'"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon name="log-out" item-start></ion-icon>
-          <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.endDateTime | date:'HH:mm'"></ion-input>
-        </ion-item>
 
         <ion-item>
           <ion-icon name="plane" item-start></ion-icon>

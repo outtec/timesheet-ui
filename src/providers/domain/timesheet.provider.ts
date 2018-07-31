@@ -67,6 +67,7 @@ export class TimesheetProvider {
         responseType: 'text'
       });
   }
+
   delete(timesheet_id:string): Observable<any>{
     console.log("lançamento a ser deletado" + timesheet_id)
     return this.http.delete(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`,
@@ -74,6 +75,22 @@ export class TimesheetProvider {
       observe: 'response',
       responseType: 'text'
     });
+}
+
+byDate(obj) {
+  let today = new Date().toISOString();
+  let dateobj = new Date(obj.startDateTime);
+  let strDateTimesheet = moment(dateobj).format('DD/MM/YYYY');
+  let strToday = moment(today).format('DD/MM/YYYY');
+  return strDateTimesheet == strToday;
+}
+
+byMonth(obj) {
+  let month = new Date().toISOString();
+  let dateobj = new Date(obj.startDateTime);
+  let strDateTimesheet = moment(dateobj).format('MM');
+  let strToday = moment(dateobj).format('MM');
+  return strDateTimesheet == strToday;
 }
 
   totalTime(horaInicial, horaFinal){

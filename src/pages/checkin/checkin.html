@@ -9,33 +9,32 @@
 <ion-content padding>
 
   <ion-list>
+    <ion-row>
+      <ion-col col-7>
+        <ion-item>
+            <ion-icon name="time" item-start></ion-icon>
+          <ion-label floating>Entrada</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="timesheet.startDateTime"></ion-datetime>
+        </ion-item>
+      </ion-col>
+      <ion-col col-5>
+        <ion-item>
+          <ion-label floating>Saída</ion-label>
+          <ion-datetime displayFormat="HH:mm" [(ngModel)]="timesheet.endDateTime"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row> 
+        <ion-item>        <ion-icon name="plane" item-start></ion-icon>
+            <ion-label >Viagem</ion-label>
+          <ion-toggle color="dark" [(ngModel)]="timesheet.isInTravel"></ion-toggle>
+        </ion-item>
 
-    <ion-item>
-      <ion-icon name="pin" item-start></ion-icon>
-      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="timesheet.startDateTime"></ion-datetime>
-    </ion-item>
+        <ion-item>
+            <ion-icon name="beer" item-start></ion-icon>
+            <ion-label >Feriado</ion-label>
+          <ion-toggle color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
+        </ion-item>
 
-    <ion-item>
-      <ion-icon name="log-out" item-start></ion-icon>
-      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" [(ngModel)]="timesheet.endDateTime"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-icon name="plane" item-start></ion-icon>
-      <ion-label >Em Viagem</ion-label>
-      <ion-toggle color="dark" [(ngModel)]="timesheet.isInTravel"></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name="beer" item-start></ion-icon>
-      <ion-label >Feriado</ion-label>
-      <ion-toggle color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-      <ion-icon name="list" item-start></ion-icon>
-      <ion-label floating>Descrição do Período</ion-label>
-      <ion-input type="text" [(ngModel)]="timesheet.periodDescription"></ion-input>
-    </ion-item>
   </ion-list>
 
 
@@ -47,12 +46,19 @@
       <button ion-button color="danger" block [disabled]="isCheckOutDisabled" (click)="checkout()">Check Out</button>
     </ion-col>
   </ion-row>
-
   <ion-list>
+      <ion-row class='table-header'>
+          <ion-col>Entrada</ion-col>
+          <ion-col>Saída</ion-col>
+          <ion-col>Período</ion-col>
+        </ion-row>
     <ion-item ion-item *ngFor="let lancamento of lancamentosPorData">
-      <h2>{{lancamento.periodDescription}}</h2>
-      <h2>{{lancamento.startDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
-      <h2>{{lancamento.endDateTime | date:'dd/MM/yyyy HH:mm'}}</h2>
+
+      <ion-row class='table-content'>
+        <ion-col>{{lancamento.startDateTime | date:'HH:mm'}}</ion-col>
+        <ion-col>{{lancamento.endDateTime | date:'HH:mm'}}</ion-col>
+        <ion-col>{{lancamento.totalTime}}</ion-col>
+      </ion-row>
     </ion-item>
   </ion-list>
 </ion-content>

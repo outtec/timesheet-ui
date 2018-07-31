@@ -1,4 +1,7 @@
 export class TimeProvider {
+
+
+
   /////BLOCO DE HORAS
    calculaHorasParte(horaInicial,horaFinal){
       if(this.possuiValor(horaInicial) && this.possuiValor(horaFinal) ) {

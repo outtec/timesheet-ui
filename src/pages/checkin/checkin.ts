@@ -8,8 +8,7 @@ import { CollaboratorDto } from '../../models/collaborator.dto';
 import { StorageProvider } from '../../providers/storage.provider';
 import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
 import { Content } from 'ionic-angular';
-
-
+import { makeDecorator } from '@angular/core/src/util/decorators';
 
 @IonicPage()
 @Component({
@@ -18,10 +17,11 @@ import { Content } from 'ionic-angular';
 })
 export class CheckinPage {
   @ViewChild(Content) content: Content;
-  
+
   public isCheckInDisabled: boolean;
   public isCheckOutDisabled: boolean;
   public lancamentosPorData: TimesheetDto[];
+  public lancamentosPorMes: any;
   collaborator: CollaboratorDto;
 
   timesheet: TimesheetDto = {
@@ -32,7 +32,7 @@ export class CheckinPage {
     isInTravel: false,
     periodDescription: "",
     collaboratorId: "",
-    totalTime:""
+    totalTime: ""
   }
 
   constructor(public navCtrl: NavController,
@@ -42,15 +42,15 @@ export class CheckinPage {
     private loadingCtrl: LoadingController
   ) {
   }
-  
+
 
   ionViewDidEnter() {
     let localUser = this.storageProvider.getLocalUser();
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
         .subscribe(response => {
-        this.collaborator = response as CollaboratorDto;
-        this.loadData();
+          this.collaborator = response as CollaboratorDto;
+          this.loadData();
         }, error => {
           if (error.status === 403) {
             this.navCtrl.setRoot('SigninPage');
@@ -59,22 +59,24 @@ export class CheckinPage {
     }
   }
 
- 
+
   checkin() {
     this.timesheet.collaboratorId = this.collaborator.id
     this.timesheetProvider.insert(this.timesheet)
       .subscribe(response => {
+        location.reload();
         console.log(response);
       },
         error => {
           console.log(error);
         })
   }
-  
+
 
   checkout() {
     this.timesheetProvider.update(this.timesheet, this.lancamentosPorData[0].id)
       .subscribe(response => {
+        location.reload();
         console.log(response);
       },
         error => {
@@ -89,7 +91,16 @@ export class CheckinPage {
       .subscribe(response => {
         let data = (response as any);
         lancamentos = data.data.content;
-        this.lancamentosPorData = lancamentos.filter(this.byDate)    
+
+
+         // let mesdoLancamento = moment(lancamentos[ts].startDateTime).format('MM')
+
+        //lancamentos.filter(this.timesheetProvider.byMonth)
+
+        //console.log(this.lancamentosPorMes)
+
+        this.lancamentosPorData = lancamentos.filter(this.byDate)
+        
         if (this.lancamentosPorData.length != 0 && (moment(this.lancamentosPorData[0].startDateTime).format('DD/MM/YYYY HH:mm') === moment(this.lancamentosPorData[0].endDateTime).format('DD/MM/YYYY HH:mm'))) {
           this.timesheet.startDateTime = moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format();
           this.timesheet.endDateTime = "";

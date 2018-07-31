@@ -7,13 +7,54 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let lancamento of lancamentos" (click)="showDetail(lancamento.id)">
-          <h2 text-wrap>{{lancamento.periodDescription}}</h2>
-          <h3>{{lancamento.startDateTime | date:'dd/MM/yyyy H:mm'}}</h3>
-          <h3>{{lancamento.endDateTime | date:'dd/MM/yyyy H:mm'}}</h3>
-          <h3>{{lancamento.totalTime }}</h3>
-     </button>
-  </ion-list>
- 
-</ion-content>
+
+    <ion-list>
+      <ion-list-header>
+        JULHO
+      </ion-list-header>
+      <ion-row class='table-header'>
+          <ion-col>Entrada</ion-col>
+          <ion-col>Saída</ion-col>
+          <ion-col>Período</ion-col>
+      </ion-row>
+      <button ion-item *ngFor="let c of categ">
+          <ion-row class='table-content'>
+       
+              <ion-col>{{c.startDateTime | date:'HH:mm'}}</ion-col>
+              <ion-col>{{c.endDateTime | date:'HH:mm'}}</ion-col>
+              <ion-col>{{c.totalTime}}</ion-col>
+            </ion-row>
+      </button>
+    </ion-list>
+
+    <ion-list class="accordion-list">
+        <ion-list-header no-lines no-padding>
+          <button ion-item detail-none
+                  [style.background]="headerColor"
+                  (click)="toggleAccordion()"
+                  class="accordion-header"
+                  [class.active]="expanded">
+              <ion-icon
+                item-left
+                name="ios-arrow-forward">
+              </ion-icon>
+              JULHO
+          </button>
+          <section #accordionContent
+                   [style.background]="contentColor"
+                   [class.active]="expanded"
+                   class="accordion-content">
+                <button ion-item *ngFor="let c of categ">
+                    <ion-row >
+                        <ion-col>{{c.startDateTime | date:'HH:mm'}}</ion-col>
+                        <ion-col>{{c.endDateTime | date:'HH:mm'}}</ion-col>
+                        <ion-col>{{c.totalTime}}</ion-col>
+                      </ion-row>
+                </button>
+
+          </section>
+        </ion-list-header>
+      </ion-list>
+
+
+ </ion-content>
