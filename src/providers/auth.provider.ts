@@ -17,7 +17,6 @@ export class AuthProvider {
     }
    
     authenticate(credenciais: CredenciaisDto) {
-        console.log(credenciais);
         return this.http.post(
             `${API_CONFIG.baseUrl}/login`, 
             credenciais,

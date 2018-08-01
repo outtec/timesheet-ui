@@ -15,7 +15,6 @@ export class TimesheetProvider {
 
   }
   findByCollaborator(thimesheet_collaboratorId: string): Observable<TimesheetDto[]> {
-    console.log( "id :" + thimesheet_collaboratorId)
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=${thimesheet_collaboratorId}`);
   }
 
@@ -69,7 +68,6 @@ export class TimesheetProvider {
   }
 
   delete(timesheet_id:string): Observable<any>{
-    console.log("lançamento a ser deletado" + timesheet_id)
     return this.http.delete(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`,
     {
       observe: 'response',

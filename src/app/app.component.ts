@@ -34,7 +34,8 @@ export class MyApp {
 
   
   constructor(platform: Platform, 
-    statusBar: StatusBar, splashScreen: SplashScreen,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
     public authProvider: AuthProvider) {
     platform.ready().then(() => {
       statusBar.styleDefault();
