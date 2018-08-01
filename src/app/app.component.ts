@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Nav } from 'ionic-angular';
 import { CheckinPage } from '../pages/checkin/checkin';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
+import { AuthProvider } from '../providers/auth.provider';
 
 export interface PageInterface {
   title: string;
@@ -26,12 +27,15 @@ export class MyApp {
   pages: PageInterface[] = [
     {title:'Checkin', pageName:'TabsPage', tabComponent: CheckinPage, index:0, icon:'pin'},
     {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'list'},
-    {title:'Perfil', pageName:'ProfilePage', icon:'contact'}
+    {title:'Perfil', pageName:'ProfilePage', icon:'contact'},
+    {title:'Sair', pageName:'SigninPage', icon:'log-out'}
+
   ]
 
   
   constructor(platform: Platform, 
-    statusBar: StatusBar, splashScreen: SplashScreen) {
+    statusBar: StatusBar, splashScreen: SplashScreen,
+    public authProvider: AuthProvider) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
@@ -44,12 +48,14 @@ export class MyApp {
 
 
   openPage(page: PageInterface) {
+    if (page.title === 'Sair') {
+      this.authProvider.logout();
+      this.nav.setRoot('SigninPage');
+    }
     let params = {};
- 
     if (page.index) {
       params = { tabIndex: page.index };
     }
- 
     if (this.nav.getActiveChildNav() && page.index != undefined) {
       this.nav.getActiveChildNav().select(page.index);
     } else {

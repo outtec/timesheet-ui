@@ -91,23 +91,13 @@ export class CheckinPage {
       .subscribe(response => {
         let data = (response as any);
         lancamentos = data.data.content;
-
-
-         // let mesdoLancamento = moment(lancamentos[ts].startDateTime).format('MM')
-
-        //lancamentos.filter(this.timesheetProvider.byMonth)
-
-        //console.log(this.lancamentosPorMes)
-
-        this.lancamentosPorData = lancamentos.filter(this.byDate)
-        
+        this.lancamentosPorData = lancamentos.filter(this.timesheetProvider.byDate)      
         if (this.lancamentosPorData.length != 0 && (moment(this.lancamentosPorData[0].startDateTime).format('DD/MM/YYYY HH:mm') === moment(this.lancamentosPorData[0].endDateTime).format('DD/MM/YYYY HH:mm'))) {
           this.timesheet.startDateTime = moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format();
           this.timesheet.endDateTime = "";
           this.timesheet.periodDescription = this.lancamentosPorData[0].periodDescription;
           this.timesheet.isInTravel = this.lancamentosPorData[0].isInTravel;
           this.timesheet.isHoliday = this.lancamentosPorData[0].isHoliday;
-          console.log(this.lancamentosPorData[0].periodDescription)
           this.setCheckoutTrue();
         } else {
           this.timesheet.startDateTime = moment(new Date().toISOString()).locale('pt-br').format();
@@ -128,24 +118,6 @@ export class CheckinPage {
     this.isCheckInDisabled = true;
     this.isCheckOutDisabled = false;
   }
-
-  byDate(obj) {
-    let today = new Date().toISOString();
-    let dateobj = new Date(obj.startDateTime);
-    let strDateTimesheet = moment(dateobj).format('DD/MM/YYYY');
-    let strToday = moment(today).format('DD/MM/YYYY');
-    console.log("POG CARREGA DATA : " + strToday);
-    return strDateTimesheet == strToday;
-  }
-
-  byHoliday(obj) {
-    return obj.isHoliday == true;
-  }
-
-  byTravel(obj) {
-    return obj.isInTravel == false;
-  }
-
 
 }
 

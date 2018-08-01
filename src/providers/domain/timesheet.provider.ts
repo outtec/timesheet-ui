@@ -93,8 +93,16 @@ byMonth(obj) {
   return strDateTimesheet == strToday;
 }
 
-  totalTime(horaInicial, horaFinal){
+byHoliday(obj) {
+  return obj.isHoliday == true;
+}
+
+byTravel(obj) {
+  return obj.isInTravel == false;
+}
+
+totalTime(horaInicial, horaFinal){
     return this.time.calculaHorasParte(horaInicial,horaFinal)
-  }
+}
 
 }

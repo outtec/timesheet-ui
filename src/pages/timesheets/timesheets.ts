@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, Renderer} from '@angular/core';
+import { Component } from '@angular/core';
 
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
@@ -18,27 +18,27 @@ export class TimesheetsPage {
 
   collaborator: CollaboratorDto;
   id: string;
-  categ :any = [];
+  lancamentosPorMes: any = [];
   mensal: any = [];
-  public lancamentos : TimesheetDto[];
-  public lancamentosConts : any;
+
+ 
+  public lancamentos: TimesheetDto[];
+  public lancamentosConts: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
-    private collaboratorProvider: CollaboratorProvider,
-    public renderer: Renderer
-    ) {
+    private collaboratorProvider: CollaboratorProvider) {
 
 
   }
 
   ionViewDidLoad() {
 
-    }
+  }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     let localUser = this.storageProvider.getLocalUser();
     if (localUser && localUser.email) {
       this.collaboratorProvider.findByEmail(localUser.email)
@@ -50,9 +50,9 @@ export class TimesheetsPage {
             this.navCtrl.setRoot('SigninPage');
           }
         })
-      } else {
-        this.navCtrl.setRoot('SigninPage');
-      } 
+    } else {
+      this.navCtrl.setRoot('SigninPage');
+    }
   }
 
   private loadData() {
@@ -60,86 +60,40 @@ export class TimesheetsPage {
       .subscribe(response => {
         let data = (response as any);
         this.lancamentos = data.data.content;
-
         let mes = ''; 
         this.lancamentos.map(lancamento => {
           let mesdoLancamento = moment(lancamento.startDateTime).format('MM');
+
           mesdoLancamento = this.dePara(mesdoLancamento) 
           if (mes !== mesdoLancamento) { 
             mes = mesdoLancamento;                
-            this.categ[mes] = [lancamento];
+            this.lancamentosPorMes[mes] = [lancamento];
           } else {
-            this.categ[mes].push(lancamento)
-          }                            
+            this.lancamentosPorMes[mes].push(lancamento)
+          } 
+
         })
-        this.mensal = this.categ.Agosto;
-
-        console.log(this.mensal);
-    
-        console.log(this.categ);
-    
-
-
 
       },
         error => {
           console.log(error);
         });
   }
- 
-  showDetail(timesheet_id: string){
-    this.navCtrl.push('TimesheetDetailPage',{
-      timesheet_id: timesheet_id
-    })
-  }
 
-
-  dePara(mes){
-    switch(mes){
-      case '01':{return 'Janeiro'}
-      case '02':{return 'Fevereiro'}
-      case '03':{return 'Março'}
-      case '04':{return 'Abril'}
-      case '05':{return 'Maio'}
-      case '06':{return 'Junho'}
-      case '07':{return 'Julho'}
-      case '08':{return 'Agosto'}
-      case '09':{return 'Setembro'}
-      case '10':{return 'Outubro'}
-      case '11':{return 'Novembro'}
-      case '12':{return 'Dezembro'}
+  dePara(mes) {
+    switch (mes) {
+      case '01': { return 'Janeiro' }
+      case '02': { return 'Fevereiro' }
+      case '03': { return 'Marco' }
+      case '04': { return 'Abril' }
+      case '05': { return 'Maio' }
+      case '06': { return 'Junho' }
+      case '07': { return 'Julho' }
+      case '08': { return 'Agosto' }
+      case '09': { return 'Setembro' }
+      case '10': { return 'Outubro' }
+      case '11': { return 'Novembro' }
+      case '12': { return 'Dezembro' }
     }
-   }
-
-
-
-   @Input() headerColor: string = '#F53D3D';
-   @Input() textColor: string = '#FFF';
-   @Input() contentColor: string = '#F9F9F9';
-   @Input() title: string;
-   @Input() hasMargin: boolean = true;
-   @Input() expanded: boolean;
- 
-   @ViewChild('accordionContent') elementView: ElementRef;
- 
-   viewHeight: number;
- 
- 
-   ngAfterViewInit() {
-     this.viewHeight = this.elementView.nativeElement.offsetHeight;
- 
-     if (!this.expanded) {
-       this.renderer.setElementStyle(this.elementView.nativeElement, 'height', 0 + 'px');
-     }
-   }
- 
-   toggleAccordion() {
-     this.expanded = !this.expanded;
-     const newHeight = this.expanded ? '100%' : '0px';
-     this.renderer.setElementStyle(this.elementView.nativeElement, 'height', newHeight);
-   }
- 
-
-
-
+  }
 }
