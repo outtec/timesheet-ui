@@ -42,7 +42,6 @@ export class ProfilePage {
       this.collaboratorProvider.findByEmail(localUser.email)
         .subscribe(response => {
           this.collaborator = response as CollaboratorDto; //Casting no JS
-          this.getImageIfExists();
         },
           error => {
             if (error.status === 403) {

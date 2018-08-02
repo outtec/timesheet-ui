@@ -79,7 +79,7 @@ export class TimesheetDetailPage {
     console.log(this.timesheet)
     this.timesheetProvider.update(this.timesheet, this.ts.id)
     .subscribe(response => {
-      location.reload();
+      this.navCtrl.setRoot('TabsPage');
       console.log(response);
     },
       error => {

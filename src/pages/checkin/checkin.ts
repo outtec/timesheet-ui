@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage, LoadingController } from 'ionic-angular';
+import { NavController, IonicPage, LoadingController, AlertController } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import * as moment from 'moment';
@@ -16,6 +16,7 @@ import { makeDecorator } from '@angular/core/src/util/decorators';
   templateUrl: 'checkin.html'
 })
 export class CheckinPage {
+  confirmAction: any;
   @ViewChild(Content) content: Content;
 
   public isCheckInDisabled: boolean;
@@ -34,12 +35,13 @@ export class CheckinPage {
     collaboratorId: "",
     totalTime: ""
   }
+ 
 
   constructor(public navCtrl: NavController,
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
     private collaboratorProvider: CollaboratorProvider,
-    private loadingCtrl: LoadingController
+    private alertCtrl: AlertController
   ) {
   }
 
@@ -64,7 +66,7 @@ export class CheckinPage {
     this.timesheet.collaboratorId = this.collaborator.id
     this.timesheetProvider.insert(this.timesheet)
       .subscribe(response => {
-        location.reload();
+        this.navCtrl.setRoot('TabsPage');
         console.log(response);
       },
         error => {
@@ -76,7 +78,7 @@ export class CheckinPage {
   checkout() {
     this.timesheetProvider.update(this.timesheet, this.lancamentosPorData[0].id)
       .subscribe(response => {
-        location.reload();
+        this.navCtrl.setRoot('TabsPage');
         console.log(response);
       },
         error => {
@@ -118,6 +120,14 @@ export class CheckinPage {
     this.isCheckInDisabled = true;
     this.isCheckOutDisabled = false;
   }
+
+  showDetail(timesheet_id: string){
+    this.navCtrl.push('TimesheetDetailPage',{
+      timesheet_id: timesheet_id
+    })
+  }
+
+
 
 }
 

@@ -28,8 +28,8 @@ export class TimesheetProvider {
     if (obj.endDateTime = " ") {obj.endDateTime = obj.startDateTime;}
     dateStart = new Date(obj.startDateTime);
     dateEnd = new Date(obj.endDateTime)
-    obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm:ss');
-    obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm:ss');
+    obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm');
+    obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm');
     
     let horaInicial: any;
     let horaFinal: any;
@@ -50,8 +50,8 @@ export class TimesheetProvider {
     let dateStart;
     dateStart = new Date(obj.startDateTime);
     dateEnd = new Date(obj.endDateTime)
-    obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm:ss');
-    obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm:ss');
+    obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm');
+    obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm');
 
     let horaInicial;
     let horaFinal;

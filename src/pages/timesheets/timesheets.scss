@@ -14,9 +14,7 @@ page-timesheets {
     font-family:Arial, Helvetica, sans-serif; 
     margin:0 auto;
     font-size:14px;
-   // border:1px solid #CDC9C9;
     box-shadow: #fff;
-    //background:red;
 
 }
 .accordion ul {
@@ -48,10 +46,9 @@ page-timesheets {
     -webkit-transition: all .2s ease-out;
     -moz-transition: all .2s ease-out;
 }
-.accordion ul li label:hover, .accordion [type=radio]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
+.accordion ul li label:hover, .accordion [type=checkbox]:checked ~ label, .accordion [type=checkbox]:checked ~ label {
     background:#CDC9C9;
     color: black;
-    //text-shadow:1px 1px 1px rgba(0,0,0,0.5);
     border: 1px solid #CDC9C9;
     font-size:16px;
 }
@@ -59,7 +56,6 @@ page-timesheets {
     padding:0 15px;
     font-size:16px;
     overflow:scroll;
-    //border:1px solid #CDC9C9; /* Make the border match the background so it fades in nicely */
     -webkit-transition: all .5s ease-out;
     -moz-transition: all .5s ease-out;
 }

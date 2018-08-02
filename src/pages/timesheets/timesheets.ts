@@ -83,7 +83,6 @@ export class TimesheetsPage {
     this.navCtrl.push('TimesheetDetailPage',{
       timesheet_id: timesheet_id
     })
-  
 
   }
   dePara(mes) {
