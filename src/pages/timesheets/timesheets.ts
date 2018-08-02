@@ -79,7 +79,13 @@ export class TimesheetsPage {
           console.log(error);
         });
   }
+  showDetail(timesheet_id: string){
+    this.navCtrl.push('TimesheetDetailPage',{
+      timesheet_id: timesheet_id
+    })
+  
 
+  }
   dePara(mes) {
     switch (mes) {
       case '01': { return 'Janeiro' }
