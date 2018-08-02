@@ -24,38 +24,34 @@
             <ion-col>
               <ion-item>
                   <ion-label floating>Entrada</ion-label>
-                <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.startDateTime | date:'HH:mm'"></ion-input>
+                <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.startDateTime | date:'HH:mm'" #startDateTime></ion-input>
               </ion-item>
             </ion-col>
             <ion-col>
               <ion-item>
                   <ion-label floating>Saída</ion-label>
-                <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.endDateTime | date:'HH:mm'"></ion-input>
+                <ion-input type="text" [disabled]="isDisabled" [ngModel]="ts?.endDateTime | date:'HH:mm'" #endDateTime></ion-input>
               </ion-item>
             </ion-col>
           </ion-row>
         <ion-item>
           <ion-icon name="plane" item-start></ion-icon>
           <ion-label>Em Viagem</ion-label>
-          <ion-toggle color="dark" [disabled]="isDisabled" [ngModel]="ts?.isInTravel"></ion-toggle>
+          <ion-toggle color="dark" [disabled]="isDisabled" [ngModel]="ts?.isInTravel" #isInTravel></ion-toggle>
         </ion-item>
 
         <ion-item>
-          <ion-icon name="beer" item-start></ion-icon>
+          <ion-icon name="happy" item-start></ion-icon>
           <ion-label>Feriado</ion-label>
-          <ion-toggle color="dark"  [disabled]="isDisabled" [ngModel]="ts?.isHoliday"></ion-toggle>
+          <ion-toggle color="dark"  [disabled]="isDisabled" [ngModel]="ts?.isHoliday" #isHoliday></ion-toggle>
         </ion-item>
-        <ion-item>
-          <ion-icon name="alarm" item-start large></ion-icon>
-          <ion-label floating>Total do Período</ion-label>
-          <ion-input type="text" disabled='true' [ngModel]="ts?.totalTime"></ion-input>
-        </ion-item>
+
       </ion-list>
     </ion-card-content>
   </ion-card>
   <ion-row>
     <ion-col>
-      <button ion-button color="secondary" [hidden]='isEdit' block (click)="editar()">Editar</button>
+      <button ion-button color="secondary" [hidden]='isEdit' block (click)="isEditable()">Editar</button>
     </ion-col>
     <ion-col>
       <button ion-button color="danger" [hidden]='isDelete' block (click)="deletar()">Excluir</button>
