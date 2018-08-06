@@ -17,6 +17,7 @@ export class TimeProvider {
       }
       
     }
+
     
     /**
     * Retona a diferença entre duas horas.

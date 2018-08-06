@@ -41,10 +41,10 @@
       <ion-toggle color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
     </ion-item>
     <ion-item>
-        <ion-icon name="list" item-start></ion-icon>
-        <ion-label floating>Descrição do Período</ion-label>
-        <ion-input [(ngModel)]="timesheet.periodDescription"></ion-input>
-      </ion-item>
+      <ion-icon name="list" item-start></ion-icon>
+      <ion-label floating>Descrição do Período</ion-label>
+      <ion-input [(ngModel)]="timesheet.periodDescription"></ion-input>
+    </ion-item>
   </ion-list>
   <ion-row>
     <ion-col>
@@ -58,7 +58,7 @@
     <ion-row class='table-header'>
       <ion-col>Entrada</ion-col>
       <ion-col>Saída</ion-col>
-      <ion-col>Período</ion-col>  
+      <ion-col>Período</ion-col>
     </ion-row>
     <ion-item ion-item *ngFor="let lancamento of lancamentosPorData" (click)="showDetail(lancamento.id)">
       <ion-row class='table-content'>
@@ -69,4 +69,10 @@
       </ion-row>
     </ion-item>
   </ion-list>
+  <ion-row padding>
+      <ion-item>
+          <ion-label>Total do dia</ion-label>
+         <ion-badge item-end>{{totalPorMes}}</ion-badge>
+        </ion-item>
+  </ion-row>
 </ion-content>

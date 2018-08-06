@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar color="dark">
+  <ion-navbar color="dark">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,242 +8,35 @@
 </ion-header>
 <ion-content padding>
 
-
   <div class="accordion vertical">
     <ul>
-      <li>
-        <input type="checkbox" id="radio-1" name="radio-accordion" />
-        <label for="radio-1">Janeiro</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
+      <li *ngFor="let month of months">
+        <div *ngIf="lancamentosPorMes[month]">
+          <input type="checkbox" [id]="month" name="radio-accordion" />
+          <label [for]="month">
+            <ion-row>
+              <ion-col col-7>{{month}}</ion-col>
+              <ion-col col-4>{{lancamentosPorMes[month].totalPorMes}}</ion-col>
+              <ion-col col-1><ion-icon name="ios-arrow-forward"></ion-icon></ion-col>
           </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Janeiro" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-
-              <ion-col>{{lanc.totalTime}}</ion-col>
+        </label>
+          <div class="content">
+            <ion-row class='table-header'>
+              <ion-col>Data</ion-col>
+              <ion-col>Entrada</ion-col>
+              <ion-col>Saída</ion-col>
+              <ion-col>Período</ion-col>
             </ion-row>
-          </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-2" name="radio-accordion" />
-        <label for="radio-2">Fevereiro</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Fevereiro" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-              <ion-col>{{lanc.totalTime}}</ion-col>
-            </ion-row>
-          </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-3" name="radio-accordion" />
-        <label for="radio-3">Março</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Marco" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-              <ion-col>{{lanc.totalTime}}</ion-col>
-            </ion-row>
-          </button>
-
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-4" name="radio-accordion" />
-        <label for="radio-4">Abril</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Abril" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-              <ion-col>{{lanc.totalTime}}</ion-col>
-            </ion-row>
-          </button>
-
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-5" name="radio-accordion" />
-        <label for="radio-5">Maio</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Maio" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-              <ion-col>{{lanc.totalTime}}</ion-col>
-            </ion-row>
-          </button>
-
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-6" name="radio-accordion" />
-        <label for="radio-6">Junho</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Junho" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-              <ion-col>{{lanc.totalTime}}</ion-col>
-            </ion-row>
-          </button>
-
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-7" name="radio-accordion" />
-        <label for="radio-7">Julho</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Julho" (click)="showDetail(lanc.id)">
-            <ion-row class='table-content'>
-                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-              <ion-col>{{lanc.totalTime}}</ion-col>
-            </ion-row>
-          </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-8" name="radio-accordion" />
-        <label for="radio-8">Agosto</label>
-        <div class="content">
-          <ion-row class='table-header'>
-              <ion-col>Dia</ion-col>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Agosto" (click)="showDetail(lanc.id)">
+            <button ion-item *ngFor="let lanc of lancamentosPorMes[month]" (click)="showDetail(lanc.id)">
               <ion-row class='table-content'>
-                  <ion-col>{{lanc.startDateTime | date:'dd'}}</ion-col>
-                  <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
+                <ion-col>{{lanc.startDateTime | date:'dd'}}</ion-col>
+                <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
+                <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
+                <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
                 <ion-col>{{lanc.totalTime}}</ion-col>
               </ion-row>
             </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-9" name="radio-accordion" />
-        <label for="radio-9">Setembro</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Setembro" (click)="showDetail(lanc.id)">
-              <ion-row class='table-content'>
-                  <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-                <ion-col>{{lanc.totalTime}}</ion-col>
-              </ion-row>
-            </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-10" name="radio-accordion" />
-        <label for="radio-10">Outubro</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Outubro" (click)="showDetail(lanc.id)">
-              <ion-row class='table-content'>
-                  <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-                <ion-col>{{lanc.totalTime}}</ion-col>
-              </ion-row>
-            </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-11" name="radio-accordion" />
-        <label for="radio-11">Novembro</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Novembro" (click)="showDetail(lanc.id)">
-              <ion-row class='table-content'>
-                  <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-                <ion-col>{{lanc.totalTime}}</ion-col>
-              </ion-row>
-            </button>
-        </div>
-      </li>
-      <li>
-        <input type="checkbox" id="radio-12" name="radio-accordion" />
-        <label for="radio-12">Dezembro</label>
-        <div class="content">
-          <ion-row class='table-header'>
-            <ion-col>Entrada</ion-col>
-            <ion-col>Saída</ion-col>
-            <ion-col>Período</ion-col>
-          </ion-row>
-          <button ion-item *ngFor="let lanc of lancamentosPorMes?.Dezembro" (click)="showDetail(lanc.id)">
-              <ion-row class='table-content'>
-                  <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-                  <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-                <ion-col>{{lanc.totalTime}}</ion-col>
-              </ion-row>
-            </button>
+          </div>
         </div>
       </li>
     </ul>

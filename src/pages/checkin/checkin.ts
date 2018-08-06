@@ -8,7 +8,8 @@ import { CollaboratorDto } from '../../models/collaborator.dto';
 import { StorageProvider } from '../../providers/storage.provider';
 import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
 import { Content } from 'ionic-angular';
-import { makeDecorator } from '@angular/core/src/util/decorators';
+import { TimeProvider } from '../../providers/time.provider';
+
 
 @IonicPage()
 @Component({
@@ -23,6 +24,7 @@ export class CheckinPage {
   public isCheckOutDisabled: boolean;
   public lancamentosPorData: TimesheetDto[];
   public lancamentosPorMes: any;
+  public totalPorMes: any ;
   collaborator: CollaboratorDto;
 
   timesheet: TimesheetDto = {
@@ -35,13 +37,13 @@ export class CheckinPage {
     collaboratorId: "",
     totalTime: ""
   }
- 
+
 
   constructor(public navCtrl: NavController,
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
     private collaboratorProvider: CollaboratorProvider,
-    private alertCtrl: AlertController
+    private timeProvider: TimeProvider
   ) {
   }
 
@@ -89,11 +91,12 @@ export class CheckinPage {
 
   private loadData() {
     let lancamentos: any;
+    this.totalPorMes = '00:00';
     this.timesheetProvider.findByCollaborator(this.collaborator.id)
       .subscribe(response => {
         let data = (response as any);
         lancamentos = data.data.content;
-        this.lancamentosPorData = lancamentos.filter(this.timesheetProvider.byDate)      
+        this.lancamentosPorData = lancamentos.filter(this.timesheetProvider.byDate)
         if (this.lancamentosPorData.length != 0 && (moment(this.lancamentosPorData[0].startDateTime).format('DD/MM/YYYY HH:mm') === moment(this.lancamentosPorData[0].endDateTime).format('DD/MM/YYYY HH:mm'))) {
           this.timesheet.startDateTime = moment(this.lancamentosPorData[0].startDateTime).locale('pt-br').format();
           this.timesheet.endDateTime = "";
@@ -104,11 +107,16 @@ export class CheckinPage {
         } else {
           this.timesheet.startDateTime = moment(new Date().toISOString()).locale('pt-br').format();
           this.setCheckinTrue();
+
         }
+        this.lancamentosPorData.map(lancamento => {   
+          return this.totalPorMes = this.timeProvider.somaHora(lancamento.totalTime, this.totalPorMes) 
+        })  
       },
         error => {
           console.log(error);
         })
+   
   }
   setCheckinTrue() {
     this.isCheckInDisabled = false;
@@ -121,13 +129,11 @@ export class CheckinPage {
     this.isCheckOutDisabled = false;
   }
 
-  showDetail(timesheet_id: string){
-    this.navCtrl.push('TimesheetDetailPage',{
+  showDetail(timesheet_id: string) {
+    this.navCtrl.push('TimesheetDetailPage', {
       timesheet_id: timesheet_id
     })
   }
-
-
 
 }
 
