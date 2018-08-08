@@ -31,7 +31,6 @@ export class SignupPage {
     
     
     signupUser() {
-      console.log(this.formGroup.value)
       this.collaboratorProvider.insert(this.formGroup.value)
       .subscribe(response => {
         this.showInsertOk()

@@ -7,6 +7,7 @@ import { CheckinPage } from '../pages/checkin/checkin';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
 import { AuthProvider } from '../providers/auth.provider';
 
+
 export interface PageInterface {
   title: string;
   pageName: string;
@@ -27,6 +28,7 @@ export class MyApp {
   pages: PageInterface[] = [
     {title:'Checkin', pageName:'TabsPage', tabComponent: CheckinPage, index:0, icon:'pin'},
     {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'list'},
+    {title:'Regras de Negócio', pageName:'RulesPage', icon:'briefcase'},
     {title:'Perfil', pageName:'ProfilePage', icon:'contact'},
     {title:'Sair', pageName:'SigninPage', icon:'log-out'}
 
@@ -45,8 +47,6 @@ export class MyApp {
 
 
   }
-
-
 
   openPage(page: PageInterface) {
     if (page.title === 'Sair') {

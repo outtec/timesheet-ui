@@ -70,7 +70,6 @@ export class TimesheetDetailPage {
 
 
   confirmar(){
-    
     this.timesheet.startDateTime = (moment(this.ts.startDateTime).format('YYYY-MM-DDT') + this.startDateTimeRef.value +":00")
     this.timesheet.endDateTime = (moment(this.ts.endDateTime).format('YYYY-MM-DDT') + this.endDateTimeRef.value +":00")
     this.timesheet.isHoliday = this.isHolidayRef.value

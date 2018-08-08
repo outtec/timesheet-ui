@@ -15,6 +15,8 @@ import { AuthInterceptorProvider } from '../interceptors/auth-interceptor';
 import { ImageUtilProvider } from '../providers/image-util.provider';
 import { CollaboratorProvider } from '../providers/domain/collaborator.provider';
 import { TimeProvider } from '../providers/time.provider';
+import { RulesProvider } from '../providers/domain/rules.provider';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { TimeProvider } from '../providers/time.provider';
     TimesheetProvider,
     ImageUtilProvider,
     CollaboratorProvider,
-    TimeProvider   
+    TimeProvider,
+    RulesProvider   
   ]
 })
 export class AppModule {}

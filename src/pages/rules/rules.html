@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" item-start></ion-icon>
+    </button>
+    <ion-title>Regras de Negócio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row>
+    <ion-item>
+      <ion-icon name="list" item-start></ion-icon>
+      <ion-label floating>Quando eu estiver</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-col col-7>
+      <ion-item>
+        <ion-icon name="time" item-start></ion-icon>
+        <ion-label floating>Entrada</ion-label>
+        <ion-datetime displayFormat="HH:mm"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col col-5>
+      <ion-item>
+        <ion-label floating>Saída</ion-label>
+        <ion-datetime displayFormat="HH:mm"></ion-datetime>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-item>
+      <ion-icon name="cash" item-start></ion-icon>
+      <ion-label floating>O Valor da hora será cobrado</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-row>
+  <ion-row padding>
+    <button ion-button [hidden]='isConfirm' color="primary" block (click)="confirmar()">Confirmar</button>
+  </ion-row>
+
+</ion-content>
