@@ -101,7 +101,11 @@ export class TimesheetsPage {
       this.navCtrl.setRoot('SigninPage');
     }
   }
-
+  
+  newTimesheet(){
+    this.navCtrl.push('TimesheetPage');
+  }
+  
   showDetail(timesheet_id: string) {
     this.navCtrl.push('TimesheetDetailPage', {
       timesheet_id: timesheet_id

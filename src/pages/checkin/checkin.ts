@@ -107,7 +107,6 @@ export class CheckinPage {
         } else {
           this.timesheet.startDateTime = moment(new Date().toISOString()).locale('pt-br').format();
           this.setCheckinTrue();
-
         }
         this.lancamentosPorData.map(lancamento => {   
           return this.totalPorMes = this.timeProvider.somaHora(lancamento.totalTime, this.totalPorMes) 

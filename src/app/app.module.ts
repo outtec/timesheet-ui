@@ -17,8 +17,6 @@ import { CollaboratorProvider } from '../providers/domain/collaborator.provider'
 import { TimeProvider } from '../providers/time.provider';
 import { RulesProvider } from '../providers/domain/rules.provider';
 
-
-
 @NgModule({
   declarations: [
     MyApp
@@ -44,7 +42,7 @@ import { RulesProvider } from '../providers/domain/rules.provider';
     ImageUtilProvider,
     CollaboratorProvider,
     TimeProvider,
-    RulesProvider   
+    RulesProvider 
   ]
 })
 export class AppModule {}
