@@ -54,7 +54,6 @@ export class RulesPage {
 
   confirmar() {
     this.rule.collaboratorId = this.collaborator.id;
-    console.log(this.rule)
     this.rulesProvider.insert(this.rule)
       .subscribe(response => {
         this.navCtrl.setRoot('TabsPage');

@@ -10,37 +10,37 @@
   <ion-item>
     <ion-icon name="calendar" item-start></ion-icon>
     <ion-label floating>Entrada</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="timesheet.startDateTime"></ion-datetime>
   </ion-item>
   <ion-row>
     <ion-col col-7>
       <ion-item>
         <ion-icon name="time" item-start></ion-icon>
         <ion-label floating>Entrada</ion-label>
-        <ion-datetime displayFormat="HH:mm" ></ion-datetime>
+        <ion-datetime displayFormat="HH:mm"  [(ngModel)]="timesheet.startDateTime"></ion-datetime>
       </ion-item>
     </ion-col>
     <ion-col col-5>
       <ion-item>
         <ion-label floating>Saída</ion-label>
-        <ion-datetime displayFormat="HH:mm"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" [(ngModel)]="timesheet.endDateTime"></ion-datetime>
       </ion-item>
     </ion-col>
   </ion-row>
   <ion-item>
     <ion-icon name="plane" item-start></ion-icon>
     <ion-label>Viagem</ion-label>
-    <ion-toggle color="dark"></ion-toggle>
+    <ion-toggle color="dark" [(ngModel)]="timesheet.isInTravel"></ion-toggle>
   </ion-item>
   <ion-item>
     <ion-icon name="happy" item-start></ion-icon>
     <ion-label>Feriado</ion-label>
-    <ion-toggle color="dark"></ion-toggle>
+    <ion-toggle color="dark" [(ngModel)]="timesheet.isHoliday"></ion-toggle>
   </ion-item>
   <ion-item>
     <ion-icon name="list" item-start></ion-icon>
     <ion-label floating>Descrição do Período</ion-label>
-    <ion-input ></ion-input>
+    <ion-input [(ngModel)]="timesheet.periodDescription"></ion-input>
   </ion-item>
   <ion-col>
       <button ion-button color="primary" block (click)="confirmar()">Confirmar</button>

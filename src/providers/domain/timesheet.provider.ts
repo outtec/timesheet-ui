@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../../config/api.config';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ObservableInput } from 'rxjs/Observable';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
@@ -22,6 +22,21 @@ export class TimesheetProvider {
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`);
   }
 
+save(obj: TimesheetDto): Observable<any> {
+console.log("save")
+    let horaInicial = moment(obj.startDateTime).format("HH:mm");
+    let horaFinal = moment(obj.endDateTime).format("HH:mm");
+    obj.totalTime = this.totalTime(horaInicial, horaFinal);
+    console.log(obj)
+
+    return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,
+    obj,
+      {
+        observe: 'response',
+        responseType: 'text'
+      });
+  }
+
   insert(obj: TimesheetDto): Observable<any> {
     let dateEnd;
     let dateStart;
@@ -40,6 +55,7 @@ export class TimesheetProvider {
     horaFinal = moment(obj.endDateTime).format("HH:mm");
 
     obj.totalTime = this.totalTime(horaInicial, horaFinal);
+    console.log(obj)
     return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,
       obj,
       {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
@@ -7,6 +7,7 @@ import { StorageProvider } from '../../providers/storage.provider';
 import { CollaboratorDto } from '../../models/collaborator.dto';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
+import { TimeProvider } from '../../providers/time.provider';
 
 @IonicPage()
 @Component({
@@ -32,7 +33,9 @@ export class TimesheetPage {
     public navParams: NavParams,
     public collaboratorProvider: CollaboratorProvider,
     public storageProvider: StorageProvider,
-    public timesheetProvider: TimesheetProvider
+    public timesheetProvider: TimesheetProvider,
+    public timeProvider: TimeProvider,
+    public alertCtrl : AlertController
   ) {
 
   }
@@ -55,10 +58,13 @@ export class TimesheetPage {
   }
 
   confirmar() {
-    this.timesheet.startDateTime = moment(new Date().toISOString()).locale('pt-br').format();
     this.timesheet.collaboratorId = this.collaborator.id;
-    console.log(this.timesheet)
-    this.timesheetProvider.insert(this.timesheet)
+    let horaentrada = moment(this.timesheet.startDateTime).format("HH:mm")
+    let horasaida = this.timesheet.endDateTime
+    if(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida) == false){
+    let date = moment(this.timesheet.startDateTime).format("YYYY-MM-DD") + "T" + horasaida + ":00Z";
+    this.timesheet.endDateTime = new Date(date).toISOString();
+    this.timesheetProvider.save(this.timesheet)
       .subscribe(response => {
         this.navCtrl.setRoot('TabsPage');
         console.log(response);
@@ -66,5 +72,15 @@ export class TimesheetPage {
         error => {
           console.log(error);
         })
+      }else{
+ 
+          let alert = this.alertCtrl.create({
+            title: 'Erro',
+            subTitle: 'O horário de entrada é maior que o horário de saída',
+            buttons: ['OK']
+          });
+          alert.present();
+        
+      }
   }
 }
