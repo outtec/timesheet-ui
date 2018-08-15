@@ -4,6 +4,7 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import * as moment from 'moment';
+import 'moment/locale/pt-br';
 import { StorageProvider } from '../../providers/storage.provider';
 import { CollaboratorProvider } from '../../providers/domain/collaborator.provider';
 import { CollaboratorDto } from '../../models/collaborator.dto';
@@ -56,7 +57,7 @@ export class TimesheetsPage {
               let mes = '';
               this.lancamentos.map(lancamento => {
                 let mesdoLancamento = moment(lancamento.startDateTime).format('MM');
-                mesdoLancamento = this.dePara(mesdoLancamento)
+                mesdoLancamento = this.numeroParaMes(mesdoLancamento)
                 if (mes !== mesdoLancamento) {
                   mes = mesdoLancamento;
                   this.lancamentosPorMes[mes] = [lancamento];
@@ -68,23 +69,26 @@ export class TimesheetsPage {
                   this.totalPorMes = this.timeProvider.somaHora(this.totalPorMes, lancamento.totalTime)
                   this.lancamentosPorMes[mes].totalPorMes = [this.totalPorMes]
                 }
-                var format = 'hh:mm:ss'
-                var startTime = '';
-                startTime = moment(lancamento.startDateTime).format('HH:mm:ss')
-                console.log(startTime);
-                console.log(this.timeProvider.somaHora('00:01:00','23:59:00'))
-                let time = moment(startTime, format),
-                beforeTime = moment('21:00:00', format),
-                afterTime = moment('23:59:00', format);
-                if (time.isBetween(beforeTime, afterTime)) {
 
-                  console.log('is between')
-
+                var format = 'HH:mm'
+ 
+                let horarioEntrada = moment(moment(lancamento.startDateTime).format("HH:mm"), format)
+                let horarioSaida = moment(moment(lancamento.endDateTime).format("HH:mm"), format)
+                let beforeTime = moment('21:00', format)
+                let afterTime = moment('23:59', format);
+       
+                if (horarioEntrada.isBetween(beforeTime, afterTime) && horarioSaida.isBetween(beforeTime, afterTime)) {
+                  this.timeProvider.diferencaHoras(moment(lancamento.startDateTime).format('HH:mm'), moment(lancamento.endDateTime).format('HH:mm'))
+                  console.log('SALDO DE HORAS PARA CALC 50% ' + lancamento.startDateTime + " - " + this.timeProvider.diferencaHoras(moment(lancamento.startDateTime).format('HH:mm'), moment(lancamento.endDateTime).format('HH:mm'))
+                  )
                 } else {
+                  if(horarioSaida.isBetween(beforeTime,afterTime)){
+                    console.log('SALDO DE HORAS PARA CALC 50% ' + lancamento.startDateTime + " - " + this.timeProvider.diferencaHoras("21:00", moment(lancamento.endDateTime).format('HH:mm')))
+                    this.lancamentosPorMes[mes].saldoAposHora = this.timeProvider.diferencaHoras(moment(lancamento.startDateTime).format('HH:mm'), moment(lancamento.endDateTime).format('HH:mm'))
 
-                  console.log('is not between')
-
+                  }
                 }
+
               })
               console.log(this.lancamentosPorMes)
             },
@@ -101,18 +105,22 @@ export class TimesheetsPage {
       this.navCtrl.setRoot('SigninPage');
     }
   }
-  
-  newTimesheet(){
+
+  calcHoraApos21() {
+
+  }
+
+  newTimesheet() {
     this.navCtrl.push('TimesheetPage');
   }
-  
+
   showDetail(timesheet_id: string) {
     this.navCtrl.push('TimesheetDetailPage', {
       timesheet_id: timesheet_id
     })
 
   }
-  dePara(mes) {
+  numeroParaMes(mes) {
     switch (mes) {
       case '01': { return 'Janeiro' }
       case '02': { return 'Fevereiro' }

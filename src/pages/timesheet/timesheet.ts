@@ -41,7 +41,6 @@ export class TimesheetPage {
   }
   ionViewDidLoad() {
     this.loadData();
-
   }
 
   private loadData() {
@@ -56,12 +55,12 @@ export class TimesheetPage {
         })
     }
   }
-
+  
   confirmar() {
     this.timesheet.collaboratorId = this.collaborator.id;
-    let horaentrada = moment(this.timesheet.startDateTime).format("HH:mm")
+    let horaentrada = moment.parseZone(this.timesheet.startDateTime).utc().format("HH:mm")
     let horasaida = this.timesheet.endDateTime
-    if(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida) == false){
+    if(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida) === true){
     let date = moment(this.timesheet.startDateTime).format("YYYY-MM-DD") + "T" + horasaida + ":00Z";
     this.timesheet.endDateTime = new Date(date).toISOString();
     this.timesheetProvider.save(this.timesheet)
@@ -73,14 +72,12 @@ export class TimesheetPage {
           console.log(error);
         })
       }else{
- 
           let alert = this.alertCtrl.create({
             title: 'Erro',
             subTitle: 'O horário de entrada é maior que o horário de saída',
             buttons: ['OK']
           });
           alert.present();
-        
       }
   }
 }
