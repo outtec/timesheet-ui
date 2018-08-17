@@ -9,6 +9,7 @@ export class TabsPage {
 
   tab1Root: any = 'CheckinPage';
   tab2Root: any = 'TimesheetsPage';
+  tab3Root: any = 'ReportPage';
   myIndex : number;
 
   constructor(navParams: NavParams) {

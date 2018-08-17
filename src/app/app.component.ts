@@ -1,3 +1,4 @@
+
 import { Component, ViewChild } from '@angular/core';
 import { Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -5,8 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Nav } from 'ionic-angular';
 import { CheckinPage } from '../pages/checkin/checkin';
 import { TimesheetsPage } from '../pages/timesheets/timesheets';
+import { ReportPage } from './../pages/report/report';
 import { AuthProvider } from '../providers/auth.provider';
-
 
 export interface PageInterface {
   title: string;
@@ -27,8 +28,9 @@ export class MyApp {
 
   pages: PageInterface[] = [
     {title:'Checkin', pageName:'TabsPage', tabComponent: CheckinPage, index:0, icon:'pin'},
-    {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'list'},
-    {title:'Regras de Negócio', pageName:'RulesPage', icon:'briefcase'},
+    {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'time'},
+    {title:'Reports', pageName:'TabsPage', tabComponent: ReportPage, index:3, icon:'list-box'},
+    //{title:'Regras de Negócio', pageName:'RulesPage', icon:'briefcase'},
     {title:'Perfil', pageName:'ProfilePage', icon:'contact'},
     {title:'Sair', pageName:'SigninPage', icon:'log-out'}
 

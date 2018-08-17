@@ -1,3 +1,4 @@
+import { UserProvider } from './../providers/user.provider';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -42,7 +43,8 @@ import { RulesProvider } from '../providers/domain/rules.provider';
     ImageUtilProvider,
     CollaboratorProvider,
     TimeProvider,
-    RulesProvider 
+    RulesProvider,
+    UserProvider
   ]
 })
 export class AppModule {}

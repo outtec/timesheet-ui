@@ -83,7 +83,6 @@ export class TimesheetDetailPage {
     },
       error => {
         console.log(error);
-
       })
   }
 

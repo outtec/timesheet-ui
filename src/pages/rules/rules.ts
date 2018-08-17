@@ -36,7 +36,6 @@ export class RulesPage {
 
   ionViewDidLoad() {
     this.loadData();
-
   }
 
   private loadData() {

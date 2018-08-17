@@ -17,7 +17,7 @@
       <ion-item>
         <ion-icon name="time" item-start></ion-icon>
         <ion-label floating>Entrada</ion-label>
-        <ion-datetime displayFormat="HH:mm"  [(ngModel)]="timesheet.startDateTime"></ion-datetime>
+        <ion-datetime displayFormat="HH:mm" [(ngModel)]="timesheet.startDateTime"></ion-datetime>
       </ion-item>
     </ion-col>
     <ion-col col-5>
@@ -43,9 +43,6 @@
     <ion-input [(ngModel)]="timesheet.periodDescription"></ion-input>
   </ion-item>
   <ion-col>
-      <button ion-button color="primary" block (click)="confirmar()">Confirmar</button>
-    </ion-col>
-    <ion-col>
-      <button ion-button color="primary" block (click)="locale()">T</button>
-    </ion-col>
+    <button ion-button color="primary" block (click)="confirmar()">Confirmar</button>
+  </ion-col>
 </ion-content>

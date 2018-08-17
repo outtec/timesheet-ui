@@ -14,6 +14,7 @@ export class TimesheetProvider {
     public time: TimeProvider) {
 
   }
+ 
   findByCollaborator(thimesheet_collaboratorId: string): Observable<TimesheetDto[]> {
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets?collaboratorid=${thimesheet_collaboratorId}`);
   }
@@ -120,6 +121,23 @@ console.log("save")
 
   totalTime(horaInicial, horaFinal) {
     return this.time.calculaHorasParte(horaInicial, horaFinal)
+  }
+
+  numeroParaMes(mes) {
+    switch (mes) {
+      case '01': { return 'Janeiro' }
+      case '02': { return 'Fevereiro' }
+      case '03': { return 'Marco' }
+      case '04': { return 'Abril' }
+      case '05': { return 'Maio' }
+      case '06': { return 'Junho' }
+      case '07': { return 'Julho' }
+      case '08': { return 'Agosto' }
+      case '09': { return 'Setembro' }
+      case '10': { return 'Outubro' }
+      case '11': { return 'Novembro' }
+      case '12': { return 'Dezembro' }
+    }
   }
 
 }

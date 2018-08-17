@@ -10,7 +10,6 @@ import { CollaboratorProvider } from '../../providers/domain/collaborator.provid
 import { Content } from 'ionic-angular';
 import { TimeProvider } from '../../providers/time.provider';
 
-
 @IonicPage()
 @Component({
   selector: 'page-checkin',
@@ -38,7 +37,6 @@ export class CheckinPage {
     totalTime: ""
   }
 
-
   constructor(public navCtrl: NavController,
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
@@ -46,7 +44,6 @@ export class CheckinPage {
     private timeProvider: TimeProvider
   ) {
   }
-
 
   ionViewDidEnter() {
     let localUser = this.storageProvider.getLocalUser();
@@ -63,7 +60,6 @@ export class CheckinPage {
     }
   }
 
-
   checkin() {
     this.timesheet.collaboratorId = this.collaborator.id
     this.timesheetProvider.insert(this.timesheet)
@@ -75,7 +71,6 @@ export class CheckinPage {
           console.log(error);
         })
   }
-
 
   checkout() {
     this.timesheetProvider.update(this.timesheet, this.lancamentosPorData[0].id)
@@ -133,6 +128,4 @@ export class CheckinPage {
       timesheet_id: timesheet_id
     })
   }
-
 }
-

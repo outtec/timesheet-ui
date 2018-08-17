@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Reports</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+      <button ion-item *ngFor="let lanc of lancamentosPorMes.Junho">
+          <ion-row class='table-content'>
+            <ion-col>{{lanc.startDateTime | date:'dd'}}</ion-col>
+            <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
+            <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
+            <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
+            <ion-col>{{lanc.totalTime}}</ion-col>
+          </ion-row>
+        </button>
+        <ion-item>
+          <h2>Total apos as 21 : {{totalApos21}}</h2>
+          <h2>Total mensal : {{totalPorMes}}</h2>
+        </ion-item>
+     
+      
+</ion-content>
