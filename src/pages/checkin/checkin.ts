@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage, LoadingController, AlertController } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import * as moment from 'moment';

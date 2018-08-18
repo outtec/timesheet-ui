@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_CONFIG } from '../../config/api.config';
-import { Observable, ObservableInput } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import * as moment from 'moment';
 import 'moment/locale/pt-br';
@@ -104,7 +104,6 @@ console.log("save")
   }
 
   byMonth(obj) {
-    let month = new Date().toISOString();
     let dateobj = new Date(obj.startDateTime);
     let strDateTimesheet = moment(dateobj).format('MM');
     let strToday = moment(dateobj).format('MM');
