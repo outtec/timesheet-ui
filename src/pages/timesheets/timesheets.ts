@@ -42,31 +42,6 @@ export class TimesheetsPage {
     this.loadData();
   }
 
-  private loadD(){
-    this.timesheetProvider.findByCollaborator(this.collaborator.id)
-    .subscribe(response => {
-      let data = (response as any);
-      this.lancamentos = data.data.content;
-      let mes = '';
-      this.lancamentos.map(lancamento => {
-        let mesdoLancamento = moment(lancamento.startDateTime).format('MM');
-        mesdoLancamento = this.timesheetProvider.numeroParaMes(mesdoLancamento)
-        if (mes !== mesdoLancamento) {
-          mes = mesdoLancamento;
-          this.lancamentosPorMes[mes] = [lancamento];
-          this.totalPorMes = "00:00";
-          this.totalPorMes = this.timeProvider.somaHora(this.totalPorMes, lancamento.totalTime)
-          this.lancamentosPorMes[mes].totalPorMes = [this.totalPorMes]
-        } else {
-          this.lancamentosPorMes[mes].push(lancamento)
-          this.totalPorMes = this.timeProvider.somaHora(this.totalPorMes, lancamento.totalTime)
-          this.lancamentosPorMes[mes].totalPorMes = [this.totalPorMes]
-        }
-      }) 
-    })
-        
-
-  }
   private loadData() {
     let localUser = this.storageProvider.getLocalUser();
     if (localUser && localUser.email) {

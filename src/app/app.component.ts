@@ -29,7 +29,7 @@ export class MyApp {
   pages: PageInterface[] = [
     {title:'Checkin', pageName:'TabsPage', tabComponent: CheckinPage, index:0, icon:'pin'},
     {title:'Timesheets', pageName:'TabsPage', tabComponent: TimesheetsPage, index:1, icon:'time'},
-    {title:'Reports', pageName:'TabsPage', tabComponent: ReportPage, index:3, icon:'list-box'},
+    //{title:'Reports', pageName:'TabsPage', tabComponent: ReportPage, index:3, icon:'list-box'},
     //{title:'Regras de Negócio', pageName:'RulesPage', icon:'briefcase'},
     {title:'Perfil', pageName:'ProfilePage', icon:'contact'},
     {title:'Sair', pageName:'SigninPage', icon:'log-out'}
