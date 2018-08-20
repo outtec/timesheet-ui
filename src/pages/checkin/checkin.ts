@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, AlertController } from 'ionic-angular';
 import { TimesheetDto } from '../../models/timesheet.dto';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import * as moment from 'moment';
@@ -41,7 +41,8 @@ export class CheckinPage {
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
     private collaboratorProvider: CollaboratorProvider,
-    private timeProvider: TimeProvider
+    private timeProvider: TimeProvider,
+    public alertCtrl : AlertController
   ) {
   }
 
@@ -61,7 +62,7 @@ export class CheckinPage {
   }
 
   checkin() {
-    this.timesheet.collaboratorId = this.collaborator.id
+    this.timesheet.collaboratorId = this.collaborator.id;
     this.timesheetProvider.insert(this.timesheet)
       .subscribe(response => {
         this.navCtrl.setRoot('TabsPage');
@@ -73,6 +74,10 @@ export class CheckinPage {
   }
 
   checkout() {
+    let horaentrada = moment.parseZone(this.timesheet.startDateTime).utc().format("HH:mm")
+    let horasaida = this.timesheet.endDateTime
+    console.log(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida))
+    if(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida) === true){
     this.timesheetProvider.update(this.timesheet, this.lancamentosPorData[0].id)
       .subscribe(response => {
         this.navCtrl.setRoot('TabsPage');
@@ -82,6 +87,14 @@ export class CheckinPage {
           console.log(error);
 
         })
+      }else{
+          let alert = this.alertCtrl.create({
+            title: 'Erro',
+            subTitle: 'O horário de entrada é maior que o horário de saída',
+            buttons: ['OK']
+          });
+          alert.present();
+        }
   }
 
   private loadData() {
