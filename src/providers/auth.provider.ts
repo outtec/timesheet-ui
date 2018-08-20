@@ -48,4 +48,14 @@ export class AuthProvider {
                responseType: 'text'
             })
     }
+
+    resetPassword(email: any) {
+        return this.http.post(
+            `${API_CONFIG.baseUrl}/auth/forgot`, 
+            email,
+            {
+               observe: 'response',
+               responseType: 'text'
+            })
+    }
 }
