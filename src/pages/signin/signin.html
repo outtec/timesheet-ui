@@ -11,7 +11,14 @@
     </ion-item>
   </form>
   <div padding>
-    <button ion-button color="primary" block (click)="login()">Entrar</button>
-    <button ion-button outline block outline (click)="signup()">Registrar</button>
+  <ion-row>
+    <ion-col><button ion-button color="primary" block outline (click)="login()">Entrar</button></ion-col>
+  </ion-row>
+  <ion-row>
+  <ion-col><button ion-button color="secondary" block outline (click)="signup()">Registrar</button>
+  </ion-col>
+  <ion-col><button ion-button color="danger" block outline (click)="forgotPassword()">Esqueci a Senha</button>
+  </ion-col>
+  </ion-row>
   </div>
 </ion-content>

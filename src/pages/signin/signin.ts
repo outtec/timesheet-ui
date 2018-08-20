@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, MenuController } from 'ionic-angular';
+import { NavController, IonicPage, MenuController, ModalController } from 'ionic-angular';
 import { CredenciaisDto } from '../../models/credenciais.dto';
 import { AuthProvider } from '../../providers/auth.provider';
 
@@ -12,7 +12,8 @@ export class SigninPage {
   constructor(
     public navCtrl: NavController,
     public menu: MenuController,
-    public auth: AuthProvider
+    public auth: AuthProvider,
+    public modalCtrl: ModalController
   ) {
 
   }
@@ -43,5 +44,10 @@ export class SigninPage {
   signup() {
     this.navCtrl.push('SignupPage');
   }  
+
+  forgotPassword() {
+    const modal = this.modalCtrl.create('ForgotPasswordPage');
+    modal.present();
+  }
 
 }
