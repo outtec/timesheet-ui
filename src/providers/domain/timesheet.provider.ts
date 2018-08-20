@@ -24,12 +24,6 @@ export class TimesheetProvider {
   }
 
 save(obj: TimesheetDto): Observable<any> {
-console.log("save")
-    let horaInicial = moment(obj.startDateTime).format("HH:mm");
-    let horaFinal = moment(obj.endDateTime).format("HH:mm");
-    obj.totalTime = this.totalTime(horaInicial, horaFinal);
-    console.log(obj)
-
     return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,
     obj,
       {
@@ -49,14 +43,6 @@ console.log("save")
     dateEnd = new Date(obj.endDateTime)
     obj.startDateTime = moment(dateStart).format('YYYY-MM-DDTHH:mm');
     obj.endDateTime = moment(dateEnd).format('YYYY-MM-DDTHH:mm');
-
-    let horaInicial: any;
-    let horaFinal: any;
-    horaInicial = moment(obj.startDateTime).format("HH:mm");
-    horaFinal = moment(obj.endDateTime).format("HH:mm");
-
-    obj.totalTime = this.totalTime(horaInicial, horaFinal);
-    console.log(obj)
     return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,
       obj,
       {
