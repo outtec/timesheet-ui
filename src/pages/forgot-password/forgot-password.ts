@@ -9,7 +9,7 @@ import { AuthProvider } from '../../providers/auth.provider';
   templateUrl: 'forgot-password.html',
 })
 export class ForgotPasswordPage {
-
+  public isDisabled: boolean;
   formGroup: FormGroup;
   
   constructor(
@@ -30,12 +30,14 @@ export class ForgotPasswordPage {
   }
 
   recoverPassword(){
+    this.isDisabled = true;
     let email = this.formGroup.value;
     this.authProvider.resetPassword(email)
     .subscribe(response => {
-      this.presentToast('Sua nova senha foi enviada para o seu email!!');
-      this.dismiss();
+      this.isDisabled = false;
     });
+    this.presentToast('Em breve você receberá uma nova senha no seu e-mail!');
+    this.dismiss();
   }
 
   presentToast(msg: string) {

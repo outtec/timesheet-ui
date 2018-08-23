@@ -42,9 +42,9 @@
           <ion-toggle color="dark" [disabled]="isDisabled" [ngModel]="ts?.isHoliday" #isHoliday></ion-toggle>
         </ion-item>
         <ion-item>
-          <h2>
-            {{ts?.periodDescription}}
-          </h2>
+          <ion-icon name="list" item-start></ion-icon>
+          <ion-label floating>Descrição do Período</ion-label>
+          <ion-input  [disabled]="isDisabled" [ngModel]="ts?.periodDescription" #periodDescriprion></ion-input>
         </ion-item>
       </ion-list>
     </ion-card-content>

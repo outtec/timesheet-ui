@@ -1,6 +1,6 @@
 export const API_CONFIG = {
-    baseUrl: "http://localhost:8080",
+    baseUrl: "https://outtec-timesheet-api.herokuapp.com",
     bucketBaseURL:"",
     
-    //"http://localhost:8080" "https://secure-headland-16849.herokuapp.com",
+    //"http://localhost:8080" "https://outtec-timesheet-api.herokuapp.com",
 }

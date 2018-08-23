@@ -47,8 +47,7 @@ export class TimesheetDetailPage {
   @ViewChild('endDateTime') endDateTimeRef: ElementRef;
   @ViewChild('isHoliday') isHolidayRef: ElementRef;
   @ViewChild('isInTravel') isInTravelRef: ElementRef;
-
-
+  @ViewChild('periodDescriprion') periodDescriprionRef: ElementRef;
 
   ionViewDidLoad() {
     this.isDisabled = true;
@@ -73,6 +72,7 @@ export class TimesheetDetailPage {
     this.timesheet.endDateTime = (moment(this.ts.endDateTime).format('YYYY-MM-DDT') + this.endDateTimeRef.value +":00")
     this.timesheet.isHoliday = this.isHolidayRef.value
     this.timesheet.isInTravel = this.isInTravelRef.value
+    this.timesheet.periodDescription = this.periodDescriprionRef.value
     this.timesheet.collaboratorId = this.ts.collaboratorId
     console.log(this.timesheet)
     this.timesheetProvider.update(this.timesheet, this.ts.id)
