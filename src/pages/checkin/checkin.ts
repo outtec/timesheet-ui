@@ -23,7 +23,7 @@ export class CheckinPage {
   public isCheckOutDisabled: boolean;
   public lancamentosPorData: TimesheetDto[];
   public lancamentosPorMes: any;
-  public totalPorMes: any ;
+  public totalPorMes: any;
   collaborator: CollaboratorDto;
 
   timesheet: TimesheetDto = {
@@ -42,7 +42,7 @@ export class CheckinPage {
     private storageProvider: StorageProvider,
     private collaboratorProvider: CollaboratorProvider,
     private timeProvider: TimeProvider,
-    public alertCtrl : AlertController
+    public alertCtrl: AlertController
   ) {
   }
 
@@ -76,25 +76,25 @@ export class CheckinPage {
   checkout() {
     let horaentrada = moment.parseZone(this.timesheet.startDateTime).utc().format("HH:mm")
     let horasaida = this.timesheet.endDateTime
-    console.log(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida))
-    if(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada,horasaida) === true){
-    this.timesheetProvider.update(this.timesheet, this.lancamentosPorData[0].id)
-      .subscribe(response => {
-        this.navCtrl.setRoot('TabsPage');
-        console.log(response);
-      },
-        error => {
-          console.log(error);
+    console.log(this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada, horasaida))
+    if (this.timeProvider.isHoraInicialMenorHoraFinal(horaentrada, horasaida) === true) {
+      this.timesheetProvider.update(this.timesheet, this.lancamentosPorData[0].id)
+        .subscribe(response => {
+          this.navCtrl.setRoot('TabsPage');
+          console.log(response);
+        },
+          error => {
+            console.log(error);
 
-        })
-      }else{
-          let alert = this.alertCtrl.create({
-            title: 'Erro',
-            subTitle: 'O horário de entrada é maior que o horário de saída',
-            buttons: ['OK']
-          });
-          alert.present();
-        }
+          })
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Erro',
+        subTitle: 'O horário de entrada é maior que o horário de saída',
+        buttons: ['OK']
+      });
+      alert.present();
+    }
   }
 
   private loadData() {
@@ -116,12 +116,19 @@ export class CheckinPage {
           this.timesheet.startDateTime = moment(new Date().toISOString()).locale('pt-br').format();
           this.setCheckinTrue();
         }
+       this.calculaLancamentosPorDia()
       },
         error => {
           console.log(error);
         })
-   
   }
+
+  calculaLancamentosPorDia(){
+    this.lancamentosPorData.map(lancamento => {
+      this.totalPorMes = this.timeProvider.somaHora(lancamento.totalTime, this.totalPorMes)
+    })
+  }
+  
   setCheckinTrue() {
     this.isCheckInDisabled = false;
     this.isCheckOutDisabled = true;

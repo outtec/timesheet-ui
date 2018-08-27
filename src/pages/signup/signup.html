@@ -16,7 +16,7 @@
     <p *ngIf="formGroup.controls['name'].dirty && formGroup.controls['name'].errors" class="danger" margin-left>Valor inválido</p>
     <ion-item>
         <ion-label stacked>Email*</ion-label>
-        <ion-input formControlName="email" type="text"></ion-input>
+        <ion-input formControlName="email" type="email"></ion-input>
     </ion-item>
     <p *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors" class="danger" margin-left>Valor inválido</p>
     <ion-item>

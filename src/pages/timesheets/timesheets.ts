@@ -1,6 +1,5 @@
 import { UserProvider } from './../../providers/user.provider';
 import { Component } from '@angular/core';
-
 import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { TimesheetProvider } from '../../providers/domain/timesheet.provider';
 import { TimesheetDto } from '../../models/timesheet.dto';
@@ -33,8 +32,7 @@ export class TimesheetsPage {
     private timesheetProvider: TimesheetProvider,
     private storageProvider: StorageProvider,
     private collaboratorProvider: CollaboratorProvider,
-    private timeProvider: TimeProvider,
-    private userProvider:UserProvider) {
+    private timeProvider: TimeProvider) {
   }
 
   ionViewDidEnter(){

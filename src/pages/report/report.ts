@@ -1,5 +1,4 @@
 import { TimesheetDto } from './../../models/timesheet.dto';
-import { CollaboratorDto } from './../../models/collaborator.dto';
 import { UserProvider } from './../../providers/user.provider';
 import { TimeProvider } from './../../providers/time.provider';
 import { TimesheetProvider } from './../../providers/domain/timesheet.provider';
