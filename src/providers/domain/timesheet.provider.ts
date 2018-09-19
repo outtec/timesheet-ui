@@ -22,6 +22,10 @@ export class TimesheetProvider {
   findById(timesheet_id: string) {
     return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets/${timesheet_id}`);
   }
+  
+  findByPeriod(thimesheet_collaboratorId: string, startDate:string, endDate:string): Observable<TimesheetDto[]> {
+    return this.http.get<TimesheetDto[]>(`${API_CONFIG.baseUrl}/timesheets/period?collaboratorid=${thimesheet_collaboratorId}&startDate=${startDate}&endDate=${endDate}`);
+  }
 
 save(obj: TimesheetDto): Observable<any> {
     return this.http.post(`${API_CONFIG.baseUrl}/timesheets`,

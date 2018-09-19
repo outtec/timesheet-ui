@@ -7,20 +7,24 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+    <ion-row><h4>Informe o período</h4></ion-row>
+  <ion-row>
+    <ion-col col-6>
+      <ion-item>
+        <ion-label floating>Entrada</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col col-6>
+      <ion-item>
+        <ion-label floating>Saída</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY"></ion-datetime>
 
-      <button ion-item *ngFor="let lanc of lancamentosPorMes.Junho">
-          <ion-row class='table-content'>
-            <ion-col>{{lanc.startDateTime | date:'dd'}}</ion-col>
-            <ion-col>{{lanc.startDateTime | date:'HH:mm'}}</ion-col>
-            <ion-col *ngIf="lanc.startDateTime !== lanc.endDateTime">{{lanc.endDateTime | date:'HH:mm'}}</ion-col>
-            <ion-col *ngIf="lanc.startDateTime === lanc.endDateTime">--- : ---</ion-col>
-            <ion-col>{{lanc.totalTime}}</ion-col>
-          </ion-row>
-        </button>
-        <ion-item>
-          <h2>Total apos as 21 : {{totalApos21}}</h2>
-          <h2>Total mensal : {{totalPorMes}}</h2>
-        </ion-item>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <button ion-button block color="danger">report</button>
+  <button ion-button block color="primary">export to excel</button>
      
       
 </ion-content>
